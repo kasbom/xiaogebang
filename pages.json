@@ -1,0 +1,443 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue",
+		"^m-(.*)": "@/components/mview/m-$1/m-$1.vue",
+		"^c-(.*)": "@/components/cview/c-$1/c-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom" // 隐藏系统导航栏
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/getCode",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/login/submitCode",
+			"style": {
+				"navigationBarTitleText": "提交验证码"
+			}
+		},
+		
+		{
+			"path": "pages/home/cleaning/index",
+			"style": {
+				"navigationBarTitleText": "保洁服务"
+			}
+		},
+		{
+			"path": "pages/home/cleaning/detail",
+			"style": {
+				"navigationBarTitleText": "保洁详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/cleaning/create",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
+		},
+		{
+			"path": "pages/home/cleaning/moreService",
+			"style": {
+				"navigationBarTitleText": "更多服务"
+			}
+		},
+		{
+			"path": "pages/home/cleaning/moreServiceDetail",
+			"style": {
+				"navigationBarTitleText": "服务详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/cleaning/createService",
+			"style": {
+				"navigationBarTitleText": "创建订单"
+			}
+		},
+		{
+			"path": "pages/home/JoinGroup/JoinGroup",
+			"style": {
+				"navigationBarTitleText": "拼团专区"
+			}
+		},
+		{
+			"path": "pages/home/JoinGroup/detail",
+			"style": {
+				"navigationBarTitleText": "拼团详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/Spike/index",
+			"style": {
+				"navigationBarTitleText": "秒杀专区"
+			}
+		},
+		{
+			"path": "pages/home/Spike/detail",
+			"style": {
+				"navigationBarTitleText": "秒杀详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/SetMeal/index",
+			"style": {
+				"navigationBarTitleText": "套餐专区"
+			}
+		},
+		{
+			"path": "pages/home/SetMeal/detail",
+			"style": {
+				"navigationBarTitleText": "套餐详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/center/coupon/receive",
+			"style": {
+				"navigationBarTitleText": "领券中心"
+			}
+		},
+		{
+			"path": "pages/home/worker/index",
+			"style": {
+				"navigationBarTitleText": "阿姨列表"
+			}
+		},
+		{
+			"path": "pages/home/worker/detail",
+			"style": {
+				"navigationBarTitleText": "阿姨详情",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type":"share"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/home/worker/reservation",
+			"style": {
+				"navigationBarTitleText": "提交预约"
+			}
+		},
+		
+		{
+			"path": "pages/home/worker/yuesao",
+			"style": {
+				"navigationBarTitleText": "保姆服务中心"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/order/service/serviceIndex",
+			"style": {
+				"navigationBarTitleText": "服务订单"
+			}
+		},
+		{
+			"path": "pages/order/service/serviceDetail",
+			"style": {
+				"navigationBarTitleText": "服务详情"
+			}
+		},
+		{
+			"path": "pages/order/service/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/order/setMeal/index",
+			"style": {
+				"navigationBarTitleText": "我的套餐"
+			}
+		},
+		{
+			"path": "pages/order/setMeal/detail",
+			"style": {
+				"navigationBarTitleText": "套餐详情"
+			}
+		},
+		{
+			"path": "pages/order/setMeal/recording",
+			"style": {
+				"navigationBarTitleText": "服务记录"
+			}
+		},
+		{
+			"path": "pages/order/setMeal/recordingDetail",
+			"style": {
+				"navigationBarTitleText": "服务详情"
+			}
+		},
+		{
+			"path": "pages/order/service/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/joinGroup/index",
+			"style": {
+				"navigationBarTitleText": "我的拼团"
+			}
+		},
+		{
+			"path": "pages/order/joinGroup/detail",
+			"style": {
+				"navigationBarTitleText": "拼团详情"
+			}
+		},
+		{
+			"path": "pages/order/yuesao/index",
+			"style": {
+				"navigationBarTitleText": "月嫂订单"
+			}
+		},
+		{
+			"path": "pages/order/yuesao/detail",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/order/yuesao/sign",
+			"style": {
+				"navigationBarTitleText": "签名"
+			}
+		},
+		{
+			"path": "pages/order/yuesao/webView",
+			"style": {
+				"navigationBarTitleText": "合同信息"
+			}
+		},
+		{
+			"path": "pages/order/yuesao/pay",
+			"style": {
+				"navigationStyle": "custom" // 隐藏系统导航栏
+			}
+		},
+		{
+			"path": "pages/order/reservation/index",
+			"style": {
+				"navigationBarTitleText": "预约订单"
+			}
+		},
+		{
+			"path": "pages/order/reservation/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/center/index",
+			"style": {
+				"navigationStyle": "custom" // 隐藏系统导航栏
+			}
+		},
+		{
+			"path": "pages/center/share/index",
+			"style": {
+				"navigationBarTitleText": "邀请有礼"
+			}
+		},
+		{
+			"path": "pages/center/distribution/index",
+			"style": {
+				"navigationStyle": "custom" // 隐藏系统导航栏
+				
+			}
+		},
+		{
+			"path": "pages/center/distribution/withdraw",
+			"style": {
+				"navigationBarTitleText": "余额提现"
+			}
+		},
+		{
+			"path": "pages/center/distribution/withdrawlist",
+			"style": {
+				"navigationBarTitleText": "提现列表"
+			}
+		},
+		{
+			"path": "pages/center/contract/index",
+			"style": {
+				"navigationBarTitleText": "我的合同"
+			}
+		},
+		{
+			"path": "pages/center/contract/detail",
+			"style": {
+				"navigationBarTitleText": "合同详情"
+			}
+		},
+		{
+			"path": "pages/center/news/index",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		},
+		{
+			"path": "pages/center/coupon/receiveMy",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		}
+	    ,{
+            "path" : "pages/order/comment/comment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "评论",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"subPackages": [{
+		"root": "publicPages",
+		"pages": [{
+			"path": "pages/set/index",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		}, {
+			"path": "pages/news/index",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		}, {
+			"path": "pages/news/detail",
+			"style": {
+				"navigationBarTitleText": "消息详情"
+			}
+		}, {
+			"path": "pages/bank/index",
+			"style": {
+				"navigationBarTitleText": "银行卡管理"
+			}
+		}, {
+			"path": "pages/bank/addBankCard",
+			"style": {
+				"navigationBarTitleText": "添加银行卡"
+			}
+		}, {
+			"path": "pages/set/password",
+			"style": {
+				"navigationBarTitleText": "设置支付密码"
+			}
+		}, {
+			"path": "pages/address/addSite",
+			"style": {
+				"navigationBarTitleText": "添加地址"
+			}
+		}, {
+			"path": "pages/address/index",
+			"style": {
+				"navigationBarTitleText": "地址管理"
+			}
+		}, {
+			"path": "pages/help/index",
+			"style": {
+				"navigationBarTitleText": "疑问帮助"
+			}
+		}, {
+			"path": "pages/help/detail",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		}, {
+			"path": "pages/help/webView",
+			"style": {
+				"navigationBarTitleText": "客服"
+			}
+		}, {
+			"path": "pages/news/webView",
+			"style": {
+				"navigationBarTitleText": "下载"
+			}
+		}]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#333"
+	},
+	"tabBar": {
+		"color": "#333",
+		"selectedColor": "#ff6a00",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"list": [{
+			"pagePath": "pages/home/index",
+			"iconPath": "static/images/tabbar/a1.png",
+			"selectedIconPath": "static/images/tabbar/a1-sel.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/order/index",
+			"iconPath": "static/images/tabbar/a2.png",
+			"selectedIconPath": "static/images/tabbar/a2-sel.png",
+			"text": "订单"
+		}, {
+			"pagePath": "pages/center/index",
+			"iconPath": "static/images/tabbar/a3.png",
+			"selectedIconPath": "static/images/tabbar/a3-sel.png",
+			"text": "我的"
+		}]
+	}
+}

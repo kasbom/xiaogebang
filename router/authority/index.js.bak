@@ -1,0 +1,83 @@
+
+import Router from '../router.js'
+let mRouter = new Router()
+
+import flat_arr from '@/utils/flat_arr.js' // 拉平数组方法
+
+const authority_path_all = [ // 员工权限列表
+	'',
+	'create-order',
+	'project',
+	'order',
+	'user_account',
+	'user_employee',
+	['phone', 'bank', 'password']
+]
+/*
+	权限数组数字意义
+	1.发布需求
+	2.项目认证
+	3.订单管理
+	4.账户管理
+	5.员工管理
+	6.安全设置
+*/
+
+const tourist_path = [ // 游客可进入页面
+	'/',
+	'/pages/supply/index/index',
+	'/pages/supply/index/demand-items',
+	'/pages/supply/index/detail',
+  '/pages/protocol/index'
+]
+
+const authority_fn = (to) => {
+	// console.log(to)
+	let authority_num = uni.getStorageSync('authority')
+	authority_num = authority_num ? JSON.parse(authority_num) : []
+	let authority_path = authority_num.map(key => authority_path_all[key])
+	authority_path = flat_arr(authority_path)
+
+	let to_path_arr = to.split('/')
+	let to_path_length = to_path_arr.length
+	let to_path = to_path_arr[to_path_length - 2]
+
+	return new Promise((reslove, reject) => {
+		if (!to_path) {
+			reslove()
+		}
+		let userInfo = uni.getStorageSync('userInfo')
+		if (userInfo) { // 该用户已登录
+			if (flat_arr(authority_path_all).includes(to_path)) {
+				if (authority_path.includes(to_path)) {
+					reslove()
+				} else {
+					uni.showToast({
+						title: '您没有该模块权限',
+						icon: 'none'
+					})
+					reject('您没有该模块权限')
+				}
+			} else {
+				reslove()
+			}
+		} else { // 游客模式
+      // console.log(to)
+      let path = to.slice('?')[0]
+			if (tourist_path.includes(path)) {
+				reslove()
+			} else {
+				uni.showToast({
+					title: '请先登录',
+					icon: 'none'
+				})
+				mRouter.push({
+					path: '/pages/login/verify_code_login'
+				})
+				reject('请先登录')
+			}
+		}
+	})
+}
+
+export default authority_fn

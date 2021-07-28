@@ -1,0 +1,40 @@
+
+.over1{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.over2{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.over3{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+.img-box{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.img-item {
+	vertical-align: bottom;
+}
+.status_sty{
+	display: inline-block;
+	border: 1px solid #ff4b34;
+	border-radius: 30px;
+	padding: 0px 10px;
+	box-sizing: border-box;
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px!important;
+	background-color: #ffffff;
+	color: #ff4b34!important;
+}

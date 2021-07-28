@@ -1,0 +1,122 @@
+// 字号大小
+.fz10{
+  font-size: 10px;
+}
+.fz11{
+  font-size: 11px;
+}
+.fz12{
+  font-size: 12px;
+}
+.fz13{
+  font-size: 13px;
+}
+.fz14{
+  font-size: 14px;
+}
+.fz15{
+  font-size: 15px;
+}
+.fz17 {
+  font-size: 17px;
+}
+.fz18{
+  font-size: 18px;
+}
+.fz19{
+  font-size: 19px;
+}
+
+.fz20{
+  font-size: 20px;
+}
+
+.fz21{
+  font-size: 21px;
+}
+.fz22{
+  font-size: 22px;
+}
+.fz23{
+  font-size: 23px;
+}
+.fz24{
+  font-size: 24px;
+}
+
+// 字体颜色
+.theme-c{
+  color: $theme-c;
+}
+
+.fc{
+  color: $uni-text-color-inverse;
+}
+
+.h1{
+  color: #333;
+}
+.h2{
+  color: #535353;
+}
+.h3{
+  color: #7b7b7b;
+}
+.h4{
+  color: #999;
+}
+.h99{
+	color: #ff4b34;;
+}
+
+.del{
+	text-decoration: line-through;
+}
+
+// 背景色
+
+.bg-fc{
+  background-color: #fff;
+}
+.bg-ec{
+  background-color: #eee;
+}
+.bg-theme{
+  background-color: $theme-c;
+}
+
+
+// 超出隐藏
+
+.over1{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  /* #ifndef APP-PLUS-NVUE */
+  white-space: nowrap;
+  /* #endif */
+}
+
+.over2{
+  /* #ifndef APP-PLUS-NVUE */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* #endif */
+  overflow: hidden;
+}
+
+.over3{
+  /* #ifndef APP-PLUS-NVUE */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  /* #endif */
+  overflow: hidden;
+}
+
+
+.reset-input{
+  background-color: #fff;
+  border: 0;
+  outline: 0;
+}

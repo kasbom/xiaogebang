@@ -1,0 +1,150 @@
+<!-- 
+  props
+    label String  左边的标签
+    title String/Number 右边的值
+    is-link Boolean 是否为链接，值为true时显示右边的箭头
+    to String/Object 需要跳转的地址
+    id String/Number 改cell标识
+    icon Obj 箭头配置
+    border 是否显示底部边框
+   event
+    click-cell 点击cell  params: {key: id}
+    
+    slot
+      left cell左边部分
+      right cell 右边部分
+ -->
+<template>
+  <view class="m-cell" @click="clickCell" :class="{'no-border': !border}">
+    <view class="left">
+      <template v-if="label">
+        <view class="label">
+          <text class="label-text">{{label}}</text>
+        </view>
+      </template>
+      <view class="left-slot" v-else>
+        <slot name="left"></slot>
+      </view>
+    </view>
+    <view class="right">
+      <view class="left-slot">
+        <slot name="right"></slot>
+      </view>
+      <template>
+        <view class="right-wrap">
+          <view class="label">
+            <text>{{title}}</text>
+          </view>
+          <uni-icons type="arrowright" :size="icon.size" :color="icon.color" v-if="isLink"></uni-icons>
+        </view>
+      </template>
+    </view>
+  </view>
+</template>
+
+<script>
+  import uniIcons from '../uni/uni-icons/uni-icons.vue'
+  import {stringUrl} from '@/utils/stringUrl.js'
+	import mRouter from '@/router/index.js'
+  export default {
+    props: {
+      label: {
+        type: String,
+        default: ''
+      },
+      title: {
+        type: [String, Number],
+        default: ''
+      },
+      'isLink': {
+        type: Boolean,
+        default: false
+      },
+      to: {
+        type: [String, Object],
+        default: ''
+      },
+      id: {
+        type: [String, Number],
+        default: ''
+      },
+      icon: {
+        type: Object,
+        default () {
+          return {
+            size: 20,
+            color: '#808080'
+          }
+        }
+      },
+      noBorder: {
+        type: Boolean,
+        default: false
+      }
+    },
+    components: {
+      uniIcons
+    },
+    methods: {
+      clickCell () {
+        if (this.isLink && this.to) {
+          let url = ''
+          if(Object.prototype.toString.call(this.to) === '[object Object]') {
+             let {path, query} = this.to
+             let queryString = stringUrl(query)
+             url = `${path}?${queryString}`
+          } else {
+            url = this.to
+          }
+          mRouter.push({
+            path: url
+          })
+        } else {
+          this.$emit('clickCell')
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="less" scoped>
+  .m-cell{
+    /* #ifndef APP-PLUS-NVUE */
+    display: flex;
+    /* #endif */
+		
+		flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 90rpx;
+    padding: 0 10upx;
+    position: relative;
+    width: 730rpx;
+    border-bottom-color: #f5f5f5;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+  .no-border{
+    border-bottom-color: rgba(0,0,0,0);
+  }
+  .label-text{
+    font-size: 14px;
+    color: #333;
+  }
+  .right{
+    /* #ifndef APP-PLUS-NVUE */
+    display: flex;
+    /* #endif */
+    flex-direction: row;
+    align-items: center;
+  }
+  .right-wrap{
+    /* #ifndef APP-PLUS-NVUE */
+    display: flex;
+    /* #endif */
+    flex-direction: row;
+    align-items: center;
+    color: #808080;
+  }
+</style>
