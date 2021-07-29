@@ -120,8 +120,10 @@
 				}
 				.title-item {
 					text-align: right;
+					display: flex;
+					margin-left: 6rpx;
 					.title-i {
-						display: inline-block;
+						margin-left: 10rpx;
 					}
 					.title-r {
 						width: 20%;

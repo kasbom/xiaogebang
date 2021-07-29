@@ -16,30 +16,39 @@
 		<view class="btn-wrap">
 			<m-button title="获取验证码" :css="{'border-radius': '40px'}" :style="{'background':isPhone?'#ffc576':'#ff6a00' }"  :disabled="isPhone" @handleClick="handleLogin"></m-button>
 		</view>
-		<!-- ios 13以上的系统才支持 apple 授权登录 -->
-		<view class="c-apple-login-btn" v-if="system >= 13 && platform=='ios'" @click="appleAuth">
-			<!-- <image class="icon" src="/static/images/icon/User/apple.png" mode=""></image> -->
-			<text>通过</text>
-			<text class="Apple">Apple</text>
-			<text>登录</text>
-		</view>
+		
 		<view class="login-foot">
 			<view class="wx-login">
 				<view class="wx-login-text">其它登录方式</view>
 				<view class="wx-btn-v">
-					<image src="../../static/images/wx.png" class="wx-icon" mode=""></image>
-					<!-- #ifdef MP-WEIXIN -->
-					<button type="primary" class="wx-btn-b" open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx"></button>
-					<!-- #endif -->
-					<!-- #ifdef APP-PLUS -->
-					 <button type="primary" class="wx-btn-b"  @click="login"></button>
-					<!-- #endif -->
+					<view class="wx-btn-box">
+						<view class="">
+							<image src="../../static/images/wx.png" class="wx-icon" mode=""></image>
+							<!-- #ifdef MP-WEIXIN -->
+							<button type="primary" class="wx-btn-b" open-type="getUserInfo" lang="zh_CN" @getuserinfo="appLoginWx"></button>
+							<!-- #endif -->
+							<!-- #ifdef APP-PLUS -->
+							 <button type="primary" class="wx-btn-b"  @click="login"></button>
+							<!-- #endif -->
+						</view>
+						
+						<!-- ios 13以上的系统才支持 apple 授权登录 -->
+						<view class="c-apple-login-btn" v-if="system"  @click="appleAuth">
+							<image style="width: 300rpx; background-color: #eeeeee;margin: 30rpx 0 0 40rpx"  src="/static/images/appleLogin.png" mode="widthFix"></image>
+						</view>
+					</view>
 				</view>
 				
 			</view>
 			<view class="tip-wrap">
-				<view>未注册的手机号验证后将自动创建小哥帮账号登录即代表您</view>
-				<view>已同意<text class="tip-name" @click="navToFuc(1)">《小哥帮隐私政策》</text></view>
+				
+				<u-checkbox-group @change="agreeChange($event)">
+					<u-checkbox v-model="agreeFlag" name="1" inactive-color="#eeeeee"
+						active-color="#ff5000"  label-size="24rpx">
+						请阅读并同意
+					</u-checkbox>
+				</u-checkbox-group>
+				<view><text class="tip-name" @click="navToFuc(1)">《小哥帮隐私政策》</text></view>
 			</view>
 		</view>
 		
@@ -68,9 +77,10 @@
 				isPhone:true,
 				bindMobile:null,
 				inv_id:null,
-				system: '', // 系统版本
+				system: false, // 系统版本
 				platform: '', // 平台
-				identityToken: ''
+				identityToken: '',
+				agreeFlag:true
 			}
 		},
 		onLoad(option){
@@ -82,10 +92,12 @@
 			removeToken('store_id')
 			removeToken('token')
 			if(option.inv_id)this.inv_id=option.inv_id
-			uni.getSystemInfo({
+			uni.getProvider({
+				service:"oauth",
 				success: (res) => {
-					this.system = res.system || ''
-					this.platform = res.platform || ''
+					if(res.provider.includes('apple')){
+						this.system=true
+					}
 				},
 				fail: (err) => {},
 				complete: () => {}
@@ -273,6 +285,13 @@
 					}
 				})
 			},
+			agreeChange(val){
+				if (this.$u.test.mobile(this.form.mobile)&&this.agreeFlag){
+					this.isPhone=false
+				}else{
+					this.isPhone=true
+				}
+			}
 		}
 	}
 </script>
@@ -308,8 +327,11 @@
 			text-align: center;
 			line-height: 19px;
 			padding-bottom: 55px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			.tip-name{
-				color: #000;
+				color:rgb(255, 197, 118);
 			}
 		}
 		.wx-login{
@@ -319,7 +341,7 @@
 			justify-content: center;
 			font-size: 13px;
 			color: #7b7b7b;
-			padding-bottom: 20rpx;
+			padding-bottom: 90rpx;
 			.wx-icon{
 				width: 40px;
 				height: 40px;
@@ -331,17 +353,24 @@
 				/deep/ uni-button:after {
 					border: none!important;
 				}
-				.wx-btn-b {
-					width: 100rpx;
-					height: 100rpx;
-					background-color: transparent;
-					border-radius: 50%;
-					position: absolute;
-					top: 10rpx;
-					left: -10rpx;
-					border: none!important;
-					z-index: 333!important;
+				.wx-btn-box {
+					display: flex;
+					.wx-btn-b {
+						width: 100rpx;
+						height: 100rpx;
+						background-color: transparent;
+						border-radius: 50%;
+						position: absolute;
+						top: 10rpx;
+						left: -10rpx;
+						border: none!important;
+						z-index: 333!important;
+					}
 				}
+				.c-apple-login-btn {
+					width: calc(100%-100rpx);	
+				}
+				
 			}
 			
 		}
@@ -349,37 +378,7 @@
 	.btn-wrap{
 		padding: 56rpx 34px 0;
 	}
-	.c-apple-login-btn {
-			position: relative;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			box-sizing: border-box;
-			margin: 30upx auto;
-			width: 360upx;
-			height: 80upx;
-			line-height: 80upx;
-			border-radius: 12upx;
-			background-color: #000000;
 	
-			.icon {
-				position: relative;
-				top: -2upx;
-				margin-right: 15upx;
-				width: 26upx;
-				height: 26upx;
-			}
-	
-			text {
-				color: #ffffff;
-				font-size: 32upx;
-				font-weight: bold;
-			}
-	
-			.Apple {
-				margin: 0 6upx;
-			}
-		}
 </style>
 
 <style>

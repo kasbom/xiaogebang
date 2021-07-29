@@ -274,6 +274,7 @@
 				// });
 				
 				Utils.getLocation().then(({ latitude, longitude }) => {
+					console.log(latitude, longitude)
 					that.localInfo.latitude=longitude+','+latitude
 					that.getIndexInfo(0)
 				}).catch(function (err) {
