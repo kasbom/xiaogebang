@@ -87,7 +87,7 @@
             "sdkConfigs" : {
                 "ad" : {},
                 "maps" : {
-                    "baidu" : {
+                    "amap" : {
                         "appkey_ios" : "b5d26e17865f940f9a81bf513bc5749f",
                         "appkey_android" : "6a9a7aab0e32c77c0cca0af1891cd70d"
                     }
@@ -117,7 +117,7 @@
                     "apple" : {}
                 },
                 "geolocation" : {
-                    "baidu" : {
+                    "amap" : {
                         "__platform__" : [ "ios", "android" ],
                         "appkey_ios" : "b5d26e17865f940f9a81bf513bc5749f",
                         "appkey_android" : "6a9a7aab0e32c77c0cca0af1891cd70d"
