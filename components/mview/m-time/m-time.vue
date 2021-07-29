@@ -8,6 +8,7 @@
 </template>
 
 <script>
+	import { time_range } from '@/utils/common.js'
 	export default {
 		props: {
 			cellShow: {
@@ -24,9 +25,11 @@
 				list: [[], []],
 				defaultValue: [0, 0],
 				timeStr: '',
+				morflag:true,
 			}
 		},
 		created() {
+			this.morflag=time_range("00:00", "12:00")
 			const start = this.$u.timeFormat(new Date().getTime(), 'yyyy-mm-dd')
 			const endYear = new Date().getFullYear() + 1
 			const mAndDay = this.$u.timeFormat(new Date().getTime(), 'mm-dd')
@@ -39,6 +42,10 @@
 				{ label: '星期五', value: 5 }, { label: '星期六', value: 6 },
 				{ label: '星期日', value: 7 },
 			]
+			// if(!this.morflag){
+			// 	segment.shift()
+			// }
+			
 			this.weekShow&&this.weekShow==true?this.$set(this.list, 0, weekList):this.$set(this.list, 0, this.getAllDate(start, end))
 			this.$set(this.list, 1, segment)
 		},
@@ -76,6 +83,9 @@
 					 value: this.format(new Date(parseInt(stamp)))
 				 })
 				 stamp = stamp + oneDay
+				}
+				if(!this.morflag){
+					dateArr.shift()
 				}
 				return dateArr
 			},

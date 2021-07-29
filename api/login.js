@@ -24,6 +24,11 @@ const API_login = vm => {
 		 * 微信APP登录
 		 */
 		wechat: (params = {}, showLoading) => vm.$u.post('/Login/wechat', params, showLoading),
+		/**
+		 * apple登录
+		 */
+		appleLogin: (params = {}, showLoading) => vm.$u.post('/Login/appleLogin', params, showLoading),
+		
   }
 }
 

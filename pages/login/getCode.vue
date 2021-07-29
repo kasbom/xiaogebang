@@ -167,7 +167,7 @@
 			},
 			async appLoginFun(newParams){
 				let that =this
-				console.log('this is newParams' +newParams)
+				console.log(newParams)
 				const { statusCode, data, message } = await that.$u.api.wechat(newParams)
 				console.log(statusCode, data)
 				if (statusCode === 200&&data.error==0) {
@@ -188,8 +188,8 @@
 					this.$toast(data.msg)
 				}
 			},
-			async loginFun(params){
-				const { statusCode, data, message } = await this.$u.api.miniWechat(params)
+			async loginFun(params,type){
+				const { statusCode, data, message } =this.system&&type?await this.$u.api.appleLogin(params):await this.$u.api.miniWechat(params)
 				if (statusCode === 200&&data.error==0) {
 					this.$toast('登录成功')
 					const token = data.token
@@ -210,7 +210,7 @@
 						}
 					// #endif
 					// #ifdef APP-PLUS
-					  this.pushIdFunc(data.userInfo)
+					  this.pushIdFunc(data.userInfo,type||false)
 					// #endif
 					
 					
@@ -224,7 +224,7 @@
 				}
 				
 			},
-			async pushIdFunc(userInfo){
+			async pushIdFunc(userInfo,type){
 				let clientid = getToken('clientid')
 				console.log(clientid)
 				const { statusCode, data, message } = await this.$u.api.pushId({clientid:clientid})
@@ -232,11 +232,15 @@
 				console.log(data)
 				console.log(data.error)
 				if (statusCode === 200&&data.error==0) {
-					console.log(userInfo.bindMobile&&userInfo.bindMobile==0)
-					if(userInfo.bindMobile&&userInfo.bindMobile==0){
-						uni.navigateTo({
-							url: '/pages/login/getCode?bindMobile='+userInfo.bindMobile
+					console.log(userInfo.bindMobile&&userInfo.bindMobile==0&&(!type))
+					if(userInfo.bindMobile&&userInfo.bindMobile==0&&(!type)){
+						uni.showToast({
+						  title: '请绑定手机号',
+						  icon: 'none',
+						  mask: true,
+						  duration:3000,
 						})
+						
 					}else{
 						console.log('进入了跳转页面')
 						uni.switchTab({
@@ -257,31 +261,26 @@
 			},
 			// 苹果授权登录
 			appleAuth() {
+				let that=this
 				uni.login({
 					provider: 'apple',
 					success: loginRes => {
 						uni.getUserInfo({
 							provider: 'apple',
 							success: (userInfoRes) => {
-				// 获取 identityToken
+				                // 获取 identityToken
 								if (userInfoRes.userInfo && userInfoRes.userInfo.identityToken) {
 									// 请求后台
-									uni.request({
-										url: config.baseURL+'/Login/appleLogin', //仅为示例，并非真实接口地址。
-										data: {
-											identityToken
-										},
-										success: (res) => {}
-									});
+									that.loginFun({identityToken:userInfoRes.userInfo.identityToken,type:1},true)
 								}
 							},
 							fail: (err) => {
-								this.$ShowToast('登录失败')
+								that.$ShowToast('登录失败')
 							}
 						})
 					},
 					fail: (err) => {
-						this.$ShowToast('登录失败')
+						that.$ShowToast('登录失败')
 					}
 				})
 			},
