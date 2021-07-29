@@ -1,15 +1,19 @@
 <template>
 	<view class="wrap">
 		<view class="item"  v-for="(itemes,index) in itemObj" :key="index" v-if="itemObj.length>0">
-			<view class="title" @click="showMore(itemes,index)">
+			<view class="title">
 				<view class="fz16 h1">{{itemes!=null?itemes.info.name:''}}</view>
-				<view class="title-item">
-					<view class="fz12 h3 title-i">{{itemes!=null?itemes.info.distance_text:''}}</view>
-					<view class="title-i title-r" >
-					    <u-icon :custom-style="{display: 'flex'}" :name="itemes.active?'arrow-up':'arrow-down'" >	</u-icon>
+				<view class="title-content">
+					<view class="title-img" @click="toshop(itemes)">
+						<image class="add-img" src="../../../static/images/center/b5.png" mode="scaleToFill"></image>
+					</view>
+					<view class="title-item"  @click="showMore(itemes,index)">
+						<view class="fz12 h3 title-i">{{itemes!=null?itemes.info.distance_text:''}}</view>
+						<view class="title-i title-r" >
+							<u-icon :custom-style="{display: 'flex'}" :name="itemes.active?'arrow-up':'arrow-down'" >	</u-icon>
+						</view>
 					</view>
 				</view>
-				
 			</view>
 			
 			<view class="list-wrap" v-if="itemes.active">
@@ -28,7 +32,7 @@
 </template>
 
 <script>
-	import {navTo,setToken} from '@/utils/common.js'
+	import {navTo,setToken,toMapAPP} from '@/utils/common.js'
 	export default {
 		data() {
 			return {
@@ -72,6 +76,22 @@
 					this.itemObj[i].active = false
 				})
 				this.itemObj[index].active = !active
+			},
+			toshop(itemes){
+				// #ifdef MP-WEIXIN
+					uni.openLocation({
+						latitude: Number(itemes.info.lat),
+						longitude: Number(itemes.info.lng),
+						name: itemes.info.name,
+						address: itemes.info.address,
+						complete: (res) => {
+							console.log(res)
+						}
+					});
+				// #endif
+				// #ifdef APP-PLUS
+				    toMapAPP(itemes.info.lat,itemes.info.lng,itemes.info.name)
+				// #endif
 			}
 		}
 	}
@@ -89,20 +109,30 @@
 			display: flex;
 			justify-content: space-between;
 			padding-bottom: 10px;
-			.title-item {
-				width: 40%;
-				text-align: right;
-				.title-i {
-					display: inline-block;
-				}
-				.title-r {
-					width: 20%;
-					text-align: right;
-					/deep/ .u-icon--right {
-						justify-content: center;
+			.title-content {
+				display: flex;
+				.title-img {
+					
+					.add-img {
+						width: 60rpx;
+						height: 40rpx;
 					}
 				}
-		    }
+				.title-item {
+					text-align: right;
+					.title-i {
+						display: inline-block;
+					}
+					.title-r {
+						width: 20%;
+						text-align: right;
+						/deep/ .u-icon--right {
+							justify-content: center;
+						}
+					}
+				}
+			}
+			
 		}
 		.list{
 			display: flex;
