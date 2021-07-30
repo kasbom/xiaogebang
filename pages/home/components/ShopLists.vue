@@ -17,7 +17,7 @@
 			</view>
 			
 			<view class="list-wrap" v-if="itemes.active">
-				<view  @click="navToPageNew(item)" class="list" v-for="(item,i) in itemes.services" :key="i">
+				<view  @click="navToPageNew(item,itemes.info.id)" class="list" v-for="(item,i) in itemes.services" :key="i">
 					<view class="list-left">
 						<image :src="item.img" class="list-icon" mode="aspectFill"></image>
 						<view class="list-title">{{item.title}}</view>

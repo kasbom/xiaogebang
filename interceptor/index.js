@@ -42,6 +42,10 @@ const install = (Vue, vm) => {
   
   // 请求拦截，配置Token等参数
   Vue.prototype.$u.http.interceptor.request = (config) => {
+	  uni.showLoading({
+	    title: '加载中...',
+	    mask: true
+	  })
     // 引用token
     // 方式一，存放在vuex的token，假设使用了uView封装的vuex方式
     // 见：https://uviewui.com/components/globalVariable.html
@@ -70,6 +74,7 @@ const install = (Vue, vm) => {
   	
   	// 响应拦截，判断状态码是否通过
   Vue.prototype.$u.http.interceptor.response = (res) => {
+	uni.hideLoading() 
     if(res.statusCode == 200&&res.data.error==0) {
 		
       // res为服务端返回值，可能有code，result等字段

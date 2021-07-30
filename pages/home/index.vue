@@ -1,5 +1,5 @@
 <template>
-	<view style="z-index: 999!important;">
+	<view style="z-index: 999!important;position: relative;">
 		<u-navbar :is-back="false" back-text="" title="小哥帮">
 			<view class="head-wrap">
 				<view class="left">
@@ -14,7 +14,9 @@
 				</view>
 			</view>
 		</u-navbar>
-		
+		<view class="kf" @click="gotoKF">
+			<image style="width: 80rpx;height: 80rpx;" src="../../static/images/index/service.png" mode="aspectFill"></image>
+		</view>
 		<!-- 轮播图 -->
 		<swipeContain :list="list"></swipeContain>
 		<!-- 分类 -->
@@ -358,12 +360,28 @@
 			},
 			closeUpload(){
 				this.showUp=false
+			},
+			gotoKF(){
+				uni.navigateTo({
+					url:"/publicPages/pages/help/webView"
+				})
 			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+	.kf{
+		position: fixed;
+		z-index: 2;
+		right: 5px;
+		top: 70%;
+		background-color: #FFFFFF;
+		border-radius: 50%;
+		width: 80rpx;
+		height: 80rpx;
+		
+	}
 	.content {
 		.up-con {
 				padding: 0 40rpx;
