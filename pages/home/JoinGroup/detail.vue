@@ -60,7 +60,7 @@
 <script>
 	import TimeDown from '../components/TimeDown.vue'
 	import JoinList from './components/JoinLists.vue'
-	import { shareWXChat } from '@/utils/common.js'
+	import { shareWXChat,getToken } from '@/utils/common.js'
 	export default {
 		data() {
 			return {
@@ -74,7 +74,10 @@
 					id:null,
 					date:null,
 					time:null,
-					group_type:1
+					group_type:1,
+					type:null,
+					time_type:null,
+					store_id:null,
 				},
 				info:{},
 				recomment:[],
@@ -95,7 +98,7 @@
 			this.params.city_id=option.city_id
 			this.params.id=option.id
 			this.params.group_type=option.group_type||1
-			
+			this.params.store_id=getToken('store_id')
 			this.getInfo()
 		},
 		onNavigationBarButtonTap() {
@@ -133,9 +136,9 @@
 					this.$toast('请选择正确时间')
 					return
 				}
-				uni.navigateTo({
-					url: `/pages/home/cleaning/create?id=${this.params.id}&city_id=${this.params.city_id}&type=${type}&time_type=${time_type}&date=${this.params.date}&time=${this.params.time}&group_type=${this.params.group_type}`
-				})
+				this.params.type=type
+				this.params.time_type=time_type
+				this.checkAllot()
 			},
 			async getInfo(){
 				let that=this
@@ -147,6 +150,17 @@
 					that.urlArr=that.info.content
 					let imgObj={"image":that.info.main_pic}
 					that.list.push(imgObj)
+				} else {
+					that.$toast(data.msg||msg)
+				}
+			},
+			async checkAllot(){
+				let that=this
+				const { statusCode, data, message } = await this.$u.api.checkAllot(this.params,true)
+				if (statusCode === 200&&data.error==0 ) {
+					uni.navigateTo({
+						url: `/pages/home/cleaning/create?id=${this.params.id}&city_id=${this.params.city_id}&type=${this.params.type}&time_type=${this.params.time_type}&date=${this.params.date}&time=${this.params.time}&group_type=${this.params.group_type}`
+					})
 				} else {
 					that.$toast(data.msg||msg)
 				}

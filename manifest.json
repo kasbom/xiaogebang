@@ -36,12 +36,11 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Maps" : {},
             "Payment" : {},
             "OAuth" : {},
-            "Geolocation" : {},
             "Push" : {},
-            "Share" : {}
+            "Share" : {},
+            "Geolocation" : {}
         },
         /* 应用发布信息 */
         "distribute" : {

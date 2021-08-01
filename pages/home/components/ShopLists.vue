@@ -2,16 +2,16 @@
 	<view class="wrap">
 		<view class="item"  v-for="(itemes,index) in itemObj" :key="index" v-if="itemObj.length>0">
 			<view class="title">
-				<view class="fz16 h1">{{itemes!=null?itemes.info.name:''}}</view>
+				<view class="fz16 h1" style="font-weight: 600;">{{itemes!=null?itemes.info.name:''}}</view>
 				<view class="title-content">
 					<view class="title-img" @click="toshop(itemes)">
-						<image class="add-img" src="../../../static/images/center/b5.png" mode="scaleToFill"></image>
+						<image class="add-img" src="../../../static/images/center/addr.png" mode="scaleToFill"></image>
 					</view>
 					<view class="title-item"  @click="showMore(itemes,index)">
 						<view class="fz12 h3 title-i">{{itemes!=null?itemes.info.distance_text:''}}</view>
-						<view class="title-i title-r" >
+						<!-- <view class="title-i title-r" >
 							<u-icon :custom-style="{display: 'flex'}" :name="itemes.active?'arrow-up':'arrow-down'" >	</u-icon>
-						</view>
+						</view> -->
 					</view>
 				</view>
 			</view>
@@ -114,8 +114,8 @@
 				.title-img {
 					
 					.add-img {
-						width: 60rpx;
-						height: 40rpx;
+						width: 40rpx;
+						height: 30rpx;
 					}
 				}
 				.title-item {
@@ -140,7 +140,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 10px 0;
+			padding: 6px 0;
 		}
 		.list-left{
 			display: flex;

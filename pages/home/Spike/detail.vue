@@ -104,11 +104,7 @@
 				}
 				
 			},
-			createOrder() {
-				uni.navigateTo({
-					url: '/pages/home/cleaning/create'
-				})
-			},
+			
 			async getInfo(){
 				let that=this
 				const { statusCode, data, message } = await this.$u.api.msDetail(this.params,true)
@@ -133,10 +129,23 @@
 					this.$toast('请选择正确时间')
 					return
 				}
-				uni.navigateTo({
-					url: `/pages/home/cleaning/create?id=${this.params.id}&city_id=${this.params.city_id}&type=${type}&time_type=${time_type}&date=${this.params.date}&time=${this.params.time}&group_type=${group_type}`
-				})
+				this.params.type=type
+				this.params.group_type=group_type
+				this.params.time_type=time_type
+				this.checkAllot()
 			},
+			async checkAllot(){
+				let that=this
+				const { statusCode, data, message } = await this.$u.api.checkAllot(this.params,true)
+				if (statusCode === 200&&data.error==0 ) {
+					uni.navigateTo({
+						url: `/pages/home/cleaning/create?id=${this.params.id}&city_id=${this.params.city_id}&type=${this.params.type}&time_type=${this.params.time_type}&date=${this.params.date}&time=${this.params.time}&group_type=${this.params.group_type}`
+					})
+				} else {
+					that.$toast(data.msg||msg)
+				}
+			},
+			
 			timeConfirm(e){
 				this.params.date=e[0].value.replace(/-/g,'')
 				this.params.time=e[1].value

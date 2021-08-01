@@ -86,7 +86,9 @@
 				</view>
 			</view>
 		</view>
-		
+		<view class="work-box">
+			<image style="width: 31%" @click="imgPreview" :src="item" mode="widthFix" v-for="item,index in imgData" :key="index"></image>
+		</view>
 		<view class="submit">
 			<view class="service" @click="gotoKF">
 				<image src="../../../static/images/index/service.png" class="service-icon" mode=""></image>
@@ -113,6 +115,7 @@
 					type:null,
 					user_id:null,
 				},
+				imgData:[],
 				shareData: {
 					
 				},
@@ -155,6 +158,7 @@
 				
 				if (statusCode === 200&&data.error==0 ) {
 					this.info=data.data
+					this.imgData=this.info.aunt_imgs
 				} else {
 					this.$toast(data.msg||msg)
 				}
@@ -163,6 +167,11 @@
 				uni.navigateTo({
 					url:"/publicPages/pages/help/webView"
 				})
+			},
+			imgPreview(){
+				uni.previewImage({
+					urls: this.imgData,
+				});
 			}
 			
 		}
@@ -266,5 +275,10 @@
 			height: 45px;
 			margin-right: 10px;
 		}
+	}
+	.work-box {
+		display: flex;
+		justify-content: space-around;
+		margin-bottom: 140rpx;
 	}
 </style>

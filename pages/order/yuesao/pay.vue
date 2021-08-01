@@ -31,19 +31,19 @@
 						<u-icon name="checkmark-circle" color="#eaeaea" size="30" slot="right-icon" v-else></u-icon>
 						<!-- #endif -->
 					</u-cell-item>
+					<!-- #ifdef APP-PLUS -->
 					<u-cell-item title="支付宝" :arrow="false" :border-bottom="false" @click="handleSelectType(2)">
 						<!-- #ifdef MP-WEIXIN -->
-						<view class="">
+						<!-- <view class="">
 							<u-icon name="checkmark-circle-fill" color="#ff4b33" size="30" slot="right-icon" v-if="payType == 2"></u-icon>
 							<u-icon name="checkmark-circle" color="#eaeaea" size="30" slot="right-icon" v-else></u-icon>
-						</view>
+						</view> -->
 						<!-- #endif -->
-						<!-- #ifdef APP-PLUS -->
 							<u-icon name="checkmark-circle-fill" color="#ff4b33" size="30" slot="right-icon" v-if="payType == 2"></u-icon>
 							<u-icon name="checkmark-circle" color="#eaeaea" size="30" slot="right-icon" v-else></u-icon>
-						<!-- #endif -->
 						
 					</u-cell-item>
+					<!-- #endif -->
 				</u-cell-group>
 			</view>
 		</view>
@@ -161,25 +161,44 @@
 					 // #ifdef MP-WEIXIN
 					        console.log('微信支付')
 							console.log(paymentData)
-							uni.requestPayment({
-								provider: payTypeStr,//wxpay微信 alipay支付宝
-								timeStamp: paymentData.timeStamp,
-								nonceStr: paymentData.nonceStr,
-								package: paymentData.package,
-								signType: paymentData.signType,
-								paySign: paymentData.paySign,  
-								success: function(res) {
-									uni.showToast({title: '支付成功'})
-									uni.switchTab({
-										url:'/pages/order/index'
-									})
-								},
-								// 参数有问题则抛出错误
-								fail: function(err) {
-									console.log(err)
-									uni.showToast({title: '请支付'})
-								},
-							})
+							if(Number(this.payType)==1){
+								uni.requestPayment({
+									provider: payTypeStr,//wxpay微信 alipay支付宝
+									timeStamp: paymentData.timeStamp,
+									nonceStr: paymentData.nonceStr,
+									package: paymentData.package,
+									signType: paymentData.signType,
+									paySign: paymentData.paySign,  
+									success: function(res) {
+										uni.showToast({title: '支付成功'})
+										uni.switchTab({
+											url:'/pages/order/index'
+										})
+									},
+									// 参数有问题则抛出错误
+									fail: function(err) {
+										console.log(err)
+										uni.showToast({title: '请支付'})
+									},
+								})
+							}else{
+								uni.requestPayment({
+									provider: payTypeStr,//wxpay微信 alipay支付宝
+									orderInfo:paymentData, 
+									success: function(res) {
+										uni.showToast({title: '支付成功'})
+										uni.switchTab({
+											url:'/pages/order/index'
+										})
+									},
+									// 参数有问题则抛出错误
+									fail: function(err) {
+										console.log(err)
+										uni.showToast({title: '请支付'})
+									},
+								})
+							}
+							
 					 // #endif
 					
 					

@@ -89,11 +89,10 @@
 			}
 		},
 		onShow(){
+			let that=this
 		     uni.$on('handleSelectAddr', (res) => {
-				 this.$set(this.groupDetail.address, 'address', res.address)
-				 this.$set(this.groupDetail.address, 'name', res.name)
-				 this.$set(this.groupDetail.address, 'mobile', res.mobile)
-				this.groupDetail.address.id=res.id
+				 that.$set(that.groupDetail, 'address', res)
+				 that.params.address_id=res.id
 				
 		     })
 			 // let handleSelectCoup= getToken('handleSelectCoup')

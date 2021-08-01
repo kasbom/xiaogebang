@@ -123,13 +123,16 @@ export default {
 	},
 	
 	getLocation() {
-	  uni.showLoading()
+	  uni.showLoading({
+	  			title: '加载中...',
+	  			mask: true
+	  })
 	  return new Promise((resolve, reject) => {
 	    uni.getLocation({
 			type: 'gcj02', //返回可以用于uni.openLocation的经纬度
 			altitude:true,
 	      success: function(res) {
-			  console.log(res)
+			  uni.hideLoading()
 	        resolve(res)
 	      },
 	      fail: function(error) {
@@ -137,7 +140,7 @@ export default {
 	        uni.hideLoading()
 	      },
 		  complete() {
-			  uni.hideLoading()
+			  
 		  }
 	    })
 	  }).then(undefined, (error) => {

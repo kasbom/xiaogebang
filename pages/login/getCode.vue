@@ -88,9 +88,7 @@
 				this.bindMobile=option.bindMobile
 				this.form.sendType=4
 			}
-			removeToken('city_id')
-			removeToken('store_id')
-			removeToken('token')
+			
 			if(option.inv_id)this.inv_id=option.inv_id
 			uni.getProvider({
 				service:"oauth",
@@ -102,6 +100,11 @@
 				fail: (err) => {},
 				complete: () => {}
 			})
+		},
+		onShow() {
+			removeToken('city_id')
+			removeToken('store_id')
+			removeToken('token')
 		},
 		methods: {
 			phoneChange(){
@@ -200,6 +203,12 @@
 					this.$store.commit('SET_USER_INFO', data.userInfo)
 					// #ifdef MP-WEIXIN
 						if(data.userInfo.bindMobile==0){
+							uni.showToast({
+							  title: '请绑定手机号',
+							  icon: 'none',
+							  mask: true,
+							  duration:3000,
+							})
 							uni.navigateTo({
 								url: '/pages/login/getCode?bindMobile='+data.userInfo.bindMobile
 							})

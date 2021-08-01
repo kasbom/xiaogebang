@@ -24,7 +24,10 @@
 				// 根据选择身份跳转
 				// switchId(userInfo)
 			}
-			
+			uni.showLoading({
+						title: '加载中...',
+						mask: true
+			})
 			// #ifdef APP-PLUS
 			    const clientInfo = plus.push.getClientInfo()
 			    console.log('获取到了cid'+clientInfo.clientid)

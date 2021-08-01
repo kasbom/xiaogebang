@@ -257,6 +257,10 @@ const API_home = vm => {
 		 * 获取帮助列表
 		 */
 		getHelpList: (params = {}, showLoading) => vm.$u.post('/Article/getHelpList', params,showLoading),
+		/**
+		 * 获取服务人员是否有空
+		 */
+		checkAllot: (params = {}, showLoading) => vm.$u.post('/Service/checkAllot', params,showLoading),
 		
   }
 }

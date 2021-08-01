@@ -15,7 +15,7 @@
 			</view>
 		</u-navbar>
 		<view class="kf" @click="gotoKF">
-			<image style="width: 80rpx;height: 80rpx;" src="../../static/images/index/service.png" mode="aspectFill"></image>
+			<image style="width: 100rpx;height: 100rpx;" src="../../static/images/index/kf.png" mode="aspectFill"></image>
 		</view>
 		<!-- 轮播图 -->
 		<swipeContain :list="list"></swipeContain>
@@ -258,25 +258,13 @@
 			},
 			getLocaltion(){
 				let that=this
-				
-				// uni.getLocation({
-				//     type: 'gcj02', //返回可以用于uni.openLocation的经纬度
-				// 	geocode:true,
-				// 	altitude:true,
-				//     success: function (res) {
-				//         const latitude = res.latitude;
-				//         const longitude = res.longitude;
-				// 		that.getRegeo(longitude, latitude)
-				// 		that.localInfo.latitude=res.longitude+','+res.latitude
-				// 		// that.localInfo.latitude='114.067427,22.547655'
-				       
-				//     },fail:function (err){
-				// 		that.getCitys(true)
-				// 	}
-				// });
+				uni.showLoading({
+							title: '加载中...',
+							mask: true
+				})
 				
 				Utils.getLocation().then(({ latitude, longitude }) => {
-					console.log(latitude, longitude)
+					uni.hideLoading()
 					that.localInfo.latitude=longitude+','+latitude
 					that.getIndexInfo(0)
 				}).catch(function (err) {
@@ -376,7 +364,6 @@
 		z-index: 2;
 		right: 5px;
 		top: 70%;
-		background-color: #FFFFFF;
 		border-radius: 50%;
 		width: 80rpx;
 		height: 80rpx;

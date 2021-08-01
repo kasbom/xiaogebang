@@ -1,8 +1,8 @@
 <template>
 	<view class="">
 		<u-gap height="20"></u-gap>
-		<view class="addr">
-			<view class="addr-left"  @click="navToPage(1)">
+		<view class="addr" @click="navToPage(1)">
+			<view class="addr-left" >
 				<image src="../../../static/images/index/addr.png" class="addr-icon" mode=""></image>
 				<view class="">
 					<view class="fz16 h1">{{addressInfo.address}}</view>
@@ -77,11 +77,9 @@
 		},
 		onShow(){
 		     uni.$on('handleSelectAddr', (res) => {
-				 this.$set(this.addressInfo, 'address', res.address)
-				 this.$set(this.addressInfo, 'name', res.name)
-				 this.$set(this.addressInfo, 'mobile', res.mobile)
+				 this.$set(this.addressInfo, res)
 				 this.params.address_id=res.id
-				
+		     				
 		     })
 			 // let handleSelectCoup= getToken('handleSelectCoup')
 			 // console.log(handleSelectCoup)

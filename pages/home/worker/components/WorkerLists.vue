@@ -6,7 +6,7 @@
 				<view class="con">
 					<view class="name">
 						<text class="fz15 h1 name">{{item.realName}}</text>
-						<text class="fz12 h3">{{item.age}}</text>
+						<text class="fz12 h3">{{item.age}}岁</text>
 					</view>
 					<view class="label-wrap">
 						<view class="label">{{item.tags}}</view>
