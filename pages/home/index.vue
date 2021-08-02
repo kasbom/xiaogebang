@@ -161,9 +161,13 @@
 				navTo(url)
 			},
 			async getCitys(flag){
+				uni.showLoading({
+					title: '请稍后...'
+				})
 				let that=this
 				const resData= await that.$u.api.getCitys({})
 				const { error, data, msg } = resData.data
+				uni.hideLoading()
 				if (error === 0) {
 					let newArr=[]
 					that.cityObj=data[0]
@@ -186,6 +190,9 @@
 				}
 			},
 			async getIndexInfo(type){
+				uni.showLoading({
+					title: '请稍后...'
+				})
 				let that=this
 				if(type==0){
 					that.localInfo.city_id=""
@@ -209,7 +216,7 @@
 						setToken('today',today)
 					}
 					that.list=data.data.banners
-					
+					uni.hideLoading()
 					if(data.data.stores.length>0){
 						that.city_id=data.city_id
 						that.localInfo.city_id=data.city_id
