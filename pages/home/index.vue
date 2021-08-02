@@ -167,6 +167,7 @@
 				let that=this
 				const resData= await that.$u.api.getCitys({})
 				const { error, data, msg } = resData.data
+				uni.hideLoading()
 				if (error === 0) {
 					let newArr=[]
 					that.cityObj=data[0]
@@ -215,6 +216,7 @@
 						setToken('today',today)
 					}
 					that.list=data.data.banners
+					uni.hideLoading()
 					if(data.data.stores.length>0){
 						that.city_id=data.city_id
 						that.localInfo.city_id=data.city_id
