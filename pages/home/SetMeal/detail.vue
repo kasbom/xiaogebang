@@ -104,6 +104,7 @@
 
 <script>
 	import { shareWXChat } from '@/utils/common.js'
+	
 	export default {
 		data() {
 			return {

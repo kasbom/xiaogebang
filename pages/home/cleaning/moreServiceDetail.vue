@@ -1,10 +1,10 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
 		<!-- 轮播图 -->
 		<view class="banner-wrap">
 			<u-swiper :list="list" height="320"></u-swiper>
 		</view>
-		
+		<kfBtn></kfBtn>
 		<!-- 商品相关 -->
 		<view class="goods-detail">
 			
@@ -53,7 +53,11 @@
 
 <script>
 	import {navTo,getToken} from '@/utils/common.js'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
+		components:{
+			kfBtn,
+		},
 		data() {
 			return {
 				/**

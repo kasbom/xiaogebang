@@ -33,7 +33,12 @@
 		},
 		onLoad(){
 			this.getInfo()
+			// #ifdef APP-PLUS
+				uni.removeStorageSync('newCount')
+				plus.runtime.setBadgeNumber(0)
+			// #endif
 		},
+		
 		methods:{
 			async getInfo(){
 				const { statusCode, data, message } =  await this.$u.api.getNoticeList(this.params,true)

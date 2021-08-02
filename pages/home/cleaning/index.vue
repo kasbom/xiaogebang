@@ -1,7 +1,8 @@
 <template>
-	<view>
+	<view style="position: relative;">
 		<!-- 轮播图 -->
 		<swipeContain :list="list"></swipeContain>
+		<kfBtn></kfBtn>
 		<!-- 服务流 -->
 		<view class="title">
 			<u-section :show-line="false" title="服务流程" font-size="36" color="#333" :right="false"></u-section>
@@ -69,6 +70,7 @@
 	import JoinGroup from './components/JoinGroup.vue'
 	import SetMealArea from './components/SetMealArea.vue'
 	import swipeContain from '../components/swipeContain.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	import {goToPage} from '@/utils/common.js'
 	export default {
 		data() {
@@ -96,6 +98,7 @@
 			JoinGroup,
 			SetMealArea,
 			swipeContain,
+			kfBtn,
 		},
 		onLoad(option){
 			this.params=JSON.parse(option.params)

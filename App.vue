@@ -68,8 +68,12 @@
 					   } 
 					  }, false);  
 				  //监听接收透传消息事件  
+				  let newCount= uni.setStorageSync('newCount',newCount) ||0
 				  plus.push.addEventListener('receive', function(message) {  
 				    console.log(message);
+					newCount+=1
+					uni.setStorageSync('newCount',newCount)
+					plus.runtime.setBadgeNumber(newCount)
 				        plus.nativeUI.toast(`小哥帮温馨提醒：${message.title}-${message.content}`); 
 				    //处理透传消息的业务逻辑代码  
 				    //plus.nativeUI.toast('push receive');  
@@ -79,6 +83,7 @@
 				  * APP热更新
 				  */
 				 appUpdate()
+				 
 			// #endif
 			// #ifdef MP-WEIXIN
 			    const updateManager = wx.getUpdateManager()

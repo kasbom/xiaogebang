@@ -217,7 +217,7 @@ export default {
 										// console.log(info);
 										let params={}
 										// params.iv=info.iv
-										
+										uni.setStorageSync('code',res2.code)
 										params.code=res2.code
 										params.type=1
 										wx.showModal({

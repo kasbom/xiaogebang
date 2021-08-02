@@ -1,6 +1,7 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
 		<swipeContain :list="listArr"></swipeContain>
+		<kfBtn></kfBtn>
 		<!-- 倒计时 -->
 		<view class="time-down h99">
 			<text class="time-down-text fz14">距结束还有:</text>
@@ -24,6 +25,7 @@
 <script>
 	import SpikeLists from './components/SpikeLists.vue'
 	import swipeContain from '../components/swipeContain.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
 		data() {
 			return {
@@ -40,6 +42,7 @@
 		components: {
 			SpikeLists,
 			swipeContain,
+			kfBtn,
 		},
 		onLoad(option){
 			this.params.city_id=option.id

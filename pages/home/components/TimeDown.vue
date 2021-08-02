@@ -10,7 +10,7 @@
 			</view>
 			<view class="del fz12">￥{{infoObj.goods_price}}</view>
 		</view>
-		<view class="right">
+		<view class="right" v-if="infoObj.time>0||infoObj.surplusTime>0">
 			<view class="fz12 right-tip">距离活动开始仅剩</view>
 			<u-count-down
 				:timestamp="infoObj.time||infoObj.surplusTime"

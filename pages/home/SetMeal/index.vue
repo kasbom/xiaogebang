@@ -1,8 +1,9 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
 		<!-- banner -->
 		
 		<swipeContain :list="listArr"></swipeContain>
+		<kfBtn></kfBtn>
 		<!-- 商品列表 -->
 		<SetMealLists :mealLists="mealLists" />
 	</view>
@@ -11,6 +12,7 @@
 <script>
 	import SetMealLists from './components/SetMealLists.vue'
 	import swipeContain from '../components/swipeContain.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
 		data() {
 			return {
@@ -24,7 +26,8 @@
 		},
 		components: {
 			SetMealLists,
-			swipeContain
+			swipeContain,
+			kfBtn,
 		},
 		onLoad(option){
 			this.params.city_id=option.id

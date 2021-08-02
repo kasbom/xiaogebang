@@ -14,9 +14,7 @@
 				</view>
 			</view>
 		</u-navbar>
-		<view class="kf" @click="gotoKF">
-			<image style="width: 100rpx;height: 100rpx;" src="../../static/images/index/kf.png" mode="aspectFill"></image>
-		</view>
+		<kfBtn></kfBtn>
 		<!-- 轮播图 -->
 		<swipeContain :list="list"></swipeContain>
 		<!-- 分类 -->
@@ -55,7 +53,7 @@
 		</view>
 		
 		<!-- 列表 -->
-		<ShopLists ref="shopList" :itemObj="storeList" v-if="storeList.length"></ShopLists>
+		<ShopLists ref="shopList" :itemObj="storeList" ></ShopLists>
 		<u-popup mode="center" closeable :mask-close-able="false" :close-icon-color="closeColor" :close-icon-pos="closePup" width="80%" border-radius="10" v-model="show">
 			<view class="content">
 				<u-swiper mode="none" :list="list"></u-swiper>
@@ -87,6 +85,7 @@
 	import Utils from '@/utils'
 	import ShopLists from './components/ShopLists.vue'
 	import swipeContain from './components/swipeContain.vue'
+	import kfBtn from './components/kfBtn.vue'
 	
 	import {navTo,setToken,getToken,todayNum} from '@/utils/common.js'
 	import amap from '@/utils/amap-wx.js';
@@ -147,7 +146,8 @@
 		
 		components: {
 			ShopLists,
-			swipeContain
+			swipeContain,
+			kfBtn,
 		},
 		onShow(){
 			flagNew=true
@@ -161,13 +161,9 @@
 				navTo(url)
 			},
 			async getCitys(flag){
-				uni.showLoading({
-					title: '请稍后...'
-				})
 				let that=this
 				const resData= await that.$u.api.getCitys({})
 				const { error, data, msg } = resData.data
-				uni.hideLoading()
 				if (error === 0) {
 					let newArr=[]
 					that.cityObj=data[0]
@@ -190,9 +186,6 @@
 				}
 			},
 			async getIndexInfo(type){
-				uni.showLoading({
-					title: '请稍后...'
-				})
 				let that=this
 				if(type==0){
 					that.localInfo.city_id=""
@@ -216,7 +209,7 @@
 						setToken('today',today)
 					}
 					that.list=data.data.banners
-					uni.hideLoading()
+					
 					if(data.data.stores.length>0){
 						that.city_id=data.city_id
 						that.localInfo.city_id=data.city_id
@@ -271,6 +264,7 @@
 				})
 				
 				Utils.getLocation().then(({ latitude, longitude }) => {
+					uni.hideLoading()
 					that.localInfo.latitude=longitude+','+latitude
 					that.getIndexInfo(0)
 				}).catch(function (err) {
@@ -355,11 +349,6 @@
 			closeUpload(){
 				this.showUp=false
 			},
-			gotoKF(){
-				uni.navigateTo({
-					url:"/publicPages/pages/help/webView"
-				})
-			}
 		}
 	}
 </script>

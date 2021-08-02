@@ -36,7 +36,7 @@
 			<u-cell-group>
 				<u-cell-item title="服务时间" :value="orderDetail.service_date"></u-cell-item>
 				<u-cell-item title="服务人员" :value="orderDetail.service_name"></u-cell-item>
-				<u-cell-item title="联系电话" :value="orderDetail.kf_mobile"></u-cell-item>
+				<u-cell-item title="联系电话" :value="orderDetail.kf_mobile" @click="toPhone(orderDetail.kf_mobile)"></u-cell-item>
 			</u-cell-group>
 		</view>
 		
@@ -123,7 +123,12 @@
 				} else {
 					this.$toast(data.msg||msg)
 				}
-			}
+			},
+			toPhone(service_mobile){
+				uni.makePhoneCall({
+				    phoneNumber: service_mobile
+				});
+			},
 		}
 	}
 </script>

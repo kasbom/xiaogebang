@@ -1,12 +1,11 @@
 <template>
-	<view class="wrap">
+	<view class="wrap" style="position: relative;min-height: 500px;">
 		<view class="left">
 			<view v-for="(item,index) in navList" :key="index" 
 			      class="left-list" :class="currentNum==index?'active':''"
 				  @click="navChange(index,item.id)"
 		     >{{item.name}}</view>
 		</view>
-		
 		<view class="right">
 			<scroll-view scroll-y scroll-with-animation class="right-box">
 				<view class="">
@@ -27,12 +26,17 @@
 				</view>
 			</scroll-view>
 		</view>
+		<kfBtn></kfBtn>
 	</view>
 </template>
 
 <script>
 	import {navTo,getToken} from '@/utils/common.js'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
+		components:{
+			kfBtn,
+		},
 		data() {
 			return {
 				params:{
