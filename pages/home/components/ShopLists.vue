@@ -67,7 +67,7 @@
 				}else{
 					url='/pages/home/worker/yuesao?params='+JSON.stringify(item.paream)
 				}
-				setToken('store_id',id)
+				uni.setStorageSync('store_id',id)
 				navTo(url)
 			},
 			showMore(itemes,index){

@@ -40,7 +40,7 @@
 			onLoad(option){
 				this.params.type= option.type
 				this.params.city_id=getToken('city_id')
-				this.params.store_id =getToken('store_id')
+				this.params.store_id =uni.getStorageSync('store_id')
 				// this.getInfo()
 			},
 			methods:{

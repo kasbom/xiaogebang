@@ -86,8 +86,12 @@
 				</view>
 			</view>
 		</view>
+		<u-gap height="20"></u-gap>
+		<view class="work-title">阿姨相册</view>
 		<view class="work-box">
-			<image style="width: 31%" @click="imgPreview" :src="item" mode="widthFix" v-for="item,index in imgData" :key="index"></image>
+			<view class="work-img-wrap" v-for="item,index in imgData" :key="index">
+				<image class="work-img" @click="imgPreview(index)" :src="item" mode="aspectFill" ></image>
+			</view>
 		</view>
 		<view class="submit">
 			<view class="service" @click="gotoKF">
@@ -168,9 +172,10 @@
 					url:"/publicPages/pages/help/webView"
 				})
 			},
-			imgPreview(){
+			imgPreview(current){
 				uni.previewImage({
 					urls: this.imgData,
+					current
 				});
 			}
 			
@@ -280,5 +285,21 @@
 		display: flex;
 		justify-content: space-around;
 		margin-bottom: 140rpx;
+	}
+	.work-img-wrap {
+		position: relative;
+		width: 31%;
+		padding-bottom: 31%;
+		.work-img {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.work-title {
+		padding: 10px 15px;
+		background-color: #fff;
 	}
 </style>

@@ -55,7 +55,7 @@
 		</view>
 		
 		<!-- 列表 -->
-		<ShopLists ref="shopList" :itemObj="storeList" ></ShopLists>
+		<ShopLists ref="shopList" :itemObj="storeList" v-if="storeList.length"></ShopLists>
 		<u-popup mode="center" closeable :mask-close-able="false" :close-icon-color="closeColor" :close-icon-pos="closePup" width="80%" border-radius="10" v-model="show">
 			<view class="content">
 				<u-swiper mode="none" :list="list"></u-swiper>
@@ -161,6 +161,9 @@
 				navTo(url)
 			},
 			async getCitys(flag){
+				uni.showLoading({
+					title: '请稍后...'
+				})
 				let that=this
 				const resData= await that.$u.api.getCitys({})
 				const { error, data, msg } = resData.data
@@ -186,6 +189,9 @@
 				}
 			},
 			async getIndexInfo(type){
+				uni.showLoading({
+					title: '请稍后...'
+				})
 				let that=this
 				if(type==0){
 					that.localInfo.city_id=""
@@ -209,7 +215,6 @@
 						setToken('today',today)
 					}
 					that.list=data.data.banners
-					
 					if(data.data.stores.length>0){
 						that.city_id=data.city_id
 						that.localInfo.city_id=data.city_id
@@ -264,7 +269,6 @@
 				})
 				
 				Utils.getLocation().then(({ latitude, longitude }) => {
-					uni.hideLoading()
 					that.localInfo.latitude=longitude+','+latitude
 					that.getIndexInfo(0)
 				}).catch(function (err) {

@@ -108,7 +108,7 @@ function toMapAPP(latitude,longitude,name){
 				//下面是拼接url,不同系统以及不同地图都有不同的拼接字段
 				case 1:
 					//注意referer=xxx的xxx替换成你在腾讯地图开发平台申请的key
-					url = `qqmap://map/geocoder?coord=${latitude},${longitude}&referer=xxx`;
+					url = `qqmap://map/geocoder?coord=${latitude},${longitude}&referer=XOQBZ-V22WV-NYHPG-UD4VL-M5OYV-4AFCH`;
 					break;
 				case 2:
 					url = `baidumap://map/marker?location=${latitude},${longitude}&title=${name}&coord_type=gcj02&src=andr.baidu.openAPIdemo`;

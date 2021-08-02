@@ -29,9 +29,19 @@
 						mask: true
 			})
 			// #ifdef APP-PLUS
-			    const clientInfo = plus.push.getClientInfo()
-			    console.log('获取到了cid'+clientInfo.clientid)
-				setToken('clientid',clientInfo.clientid)
+			var t1 = setInterval(function() {
+			    var info = plus.push.getClientInfo()
+			    var cid = info.clientid
+			    if(cid) {
+					const clientInfo = plus.push.getClientInfo()
+					setToken('clientid',clientInfo.clientid)
+					console.log('获取到了clientid-------------------', clientInfo.clientid)
+			        clearInterval(t1)
+			    }
+			}, 50)
+			 //    const clientInfo = plus.push.getClientInfo()
+			 //    console.log('获取到了cid'+clientInfo.clientid)
+				// setToken('clientid',clientInfo.clientid)
 				//app关闭默认的启动 方法关闭启动图。但是这个时间不能太晚，6s 超时后依旧会主动关闭。
 				setTimeout(()=>{
 						plus.navigator.closeSplashscreen();
