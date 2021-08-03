@@ -90,7 +90,7 @@
 					});
 				// #endif
 				// #ifdef APP-PLUS
-				    toMapAPP(itemes.info.lat,itemes.info.lng,itemes.info.name)
+				    toMapAPP(Number(itemes.info.lat),Number(itemes.info.lng),itemes.info.name)
 				// #endif
 			}
 		}

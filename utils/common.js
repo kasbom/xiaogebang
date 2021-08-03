@@ -96,8 +96,20 @@ function goToPage(item,city_id){
 		}
 		
 }
+function bMapTransQQMap(lat, lng) {
+           var X_PI = Math.PI * 3000.0 / 180.0;
+            var x = lng - 0.0065;
+            var y = lat - 0.006;
+            var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * X_PI);
+            var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * X_PI);
+            var gg_lng = z * Math.cos(theta);
+            var gg_lat = z * Math.sin(theta);
+            return { lng: gg_lng, lat: gg_lat }
+}
 function toMapAPP(latitude,longitude,name){
 	let url = "";
+	let obj=bMapTransQQMap(latitude,longitude)
+	console.log(obj)
 	if (plus.os.name == "Android") {//判断是安卓端
 		plus.nativeUI.actionSheet({//选择菜单
 			title: "选择地图应用",
@@ -108,13 +120,13 @@ function toMapAPP(latitude,longitude,name){
 				//下面是拼接url,不同系统以及不同地图都有不同的拼接字段
 				case 1:
 					//注意referer=xxx的xxx替换成你在腾讯地图开发平台申请的key
-					url = `qqmap://map/geocoder?coord=${latitude},${longitude}&referer=XOQBZ-V22WV-NYHPG-UD4VL-M5OYV-4AFCH`;
+					url = `qqmap://map/geocoder?coord=${obj.lat},${obj.lng}&referer=XOQBZ-V22WV-NYHPG-UD4VL-M5OYV-4AFCH`;
 					break;
 				case 2:
 					url = `baidumap://map/marker?location=${latitude},${longitude}&title=${name}&coord_type=gcj02&src=andr.baidu.openAPIdemo`;
 					break;
 				case 3:
-					url = `androidamap://viewMap?sourceApplication=appname&poiname=${name}&lat=${latitude}&lon=${longitude}&dev=0`;
+					url = `androidamap://viewMap?sourceApplication=appname&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=0`;
 					break;
 				default:
 					break;
@@ -138,13 +150,13 @@ function toMapAPP(latitude,longitude,name){
 		}, function(e) {
 			switch (e.index) {
 				case 1:
-					url = `qqmap://map/geocoder?coord=${latitude},${longitude}&referer=xxx`;
+					url = `qqmap://map/geocoder?coord=${obj.lat},${obj.lng}&referer=XOQBZ-V22WV-NYHPG-UD4VL-M5OYV-4AFCH`;
 					break;
 				case 2:
 					url = `baidumap://map/marker?location=${latitude},${longitude}&title=${name}&content=${name}&src=ios.baidu.openAPIdemo&coord_type=gcj02`;
 					break;
 				case 3:
-					url = `iosamap://viewMap?sourceApplication=applicationName&poiname=${name}&lat=${latitude}&lon=${longitude}&dev=0`;
+					url = `iosamap://viewMap?sourceApplication=applicationName&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=0`;
 					break;
 				default:
 					break;
