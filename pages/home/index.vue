@@ -56,7 +56,7 @@
 		<ShopLists ref="shopList" :itemObj="storeList" ></ShopLists>
 		<u-popup mode="center" closeable :mask-close-able="false" :close-icon-color="closeColor" :close-icon-pos="closePup" width="80%" border-radius="10" v-model="show">
 			<view class="content">
-				<u-swiper mode="none" :list="list"></u-swiper>
+				 <swipeContain class="new-style" :list="adArr"></swipeContain>
 			</view>
 		</u-popup>
 		<u-popup mode="center"  :mask-close-able="false"  width="80%"  v-model="showUp">
@@ -108,7 +108,7 @@
 				cityArr:[],
 				amapPlugin: null,
 				key: 'dd2d9528e54edde57d781fa219f7e920'  ,
-				show:false,
+				show:true,
 				activeIndex:0,
 				adArr:[],
 				closePup:'bottom-right',
@@ -198,9 +198,8 @@
 					})
 					let adObj={}
 					if(data.data.ad){
-						adObj=data.data.ad
-						adObj.image=adObj.img
-						that.adArr.push(adObj)
+						that.adArr=data.data.ad
+						console.log(that.adArr)
 					}
 					let oldToken=getToken('today')
 					let today=todayNum(),curTime=Date.parse(new Date())
@@ -365,6 +364,13 @@
 		
 	}
 	.content {
+		.new-style {
+			/deep/.banner-wrap {
+				padding: 0!important;
+				max-height: 190px;
+				
+			}
+		}
 		.up-con {
 				padding: 0 40rpx;
 				box-sizing: border-box;

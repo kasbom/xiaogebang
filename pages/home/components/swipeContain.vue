@@ -1,7 +1,9 @@
 <template>
 	<view class="wrap">
 		<view class="banner-wrap">
-			<u-swiper :list="list" @click="swipeClick" img-mode="aspectFill" height="320"></u-swiper>
+			 <video v-if="list.length==1&&list[0].video&&list[0].video!=''" style="width: 100%;" id="myVideo" :src="list[0].video"
+				        @error="videoErrorCallback" controls></video>
+			<u-swiper v-else :list="list" @click="swipeClick" img-mode="aspectFill" height="320"></u-swiper>
 		</view>
 	</view>
 </template>
@@ -33,7 +35,10 @@
 				goToPage(item,this.city_id)
 				
 				
-			}
+			},
+			videoErrorCallback(err){
+				console.log(err)
+			},
 		}
 	}
 </script>
