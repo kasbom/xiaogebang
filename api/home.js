@@ -261,6 +261,10 @@ const API_home = vm => {
 		 * 获取服务人员是否有空
 		 */
 		checkAllot: (params = {}, showLoading) => vm.$u.post('/Service/checkAllot', params,showLoading),
+		/**
+		 * 订单统计数量
+		 */
+		getOrderTJ: (params = {}, showLoading) => vm.$u.post('/User/getOrderTJ', params,showLoading),
 		
   }
 }

@@ -1,8 +1,9 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
 		<!-- 轮播图 -->
+		<kfBtn></kfBtn>
+
 		<u-swiper :list="bannerList" img-mode="widthFix" border-radius="none" height="750"></u-swiper>
-		
 		<!-- 商品相关 -->
 		<view class="goods-detail">
 			<view class="goods-name h1 fz16">{{setMealDetail.info.name}}</view>
@@ -104,8 +105,11 @@
 
 <script>
 	import { shareWXChat } from '@/utils/common.js'
-	
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
+		components: {
+			kfBtn,
+		},
 		data() {
 			return {
 				/**

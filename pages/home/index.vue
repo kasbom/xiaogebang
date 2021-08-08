@@ -54,11 +54,14 @@
 		
 		<!-- 列表 -->
 		<ShopLists ref="shopList" :itemObj="storeList" ></ShopLists>
-		<u-popup mode="center" closeable :mask-close-able="false" :close-icon-color="closeColor" :close-icon-pos="closePup" width="80%" border-radius="10" v-model="show">
-			<view class="content">
-				 <swipeContain class="new-style" :list="adArr"></swipeContain>
-			</view>
-		</u-popup>
+		<view class="adArr-box">
+			<u-popup mode="center" closeable :mask-close-able="false" :close-icon-color="closeColor" :close-icon-pos="closePup" width="80%" :close-icon-size="closePupSize"  v-model="show">
+				<view class="content">
+					 <swipeContain class="new-style" :list="adArr"></swipeContain>
+				</view>
+			</u-popup>
+		</view>
+		
 		<u-popup mode="center"  :mask-close-able="false"  width="80%"  v-model="showUp">
 			<view class="content">
 				<image src="../../static/images/index/up.png" mode="widthFix"></image>
@@ -113,6 +116,7 @@
 				adArr:[],
 				closePup:'bottom-right',
 				closeColor:'#ffffff',
+				closePupSize:50,
 				upInfo:{},
 				showUp:false,
 			}
@@ -198,8 +202,11 @@
 					})
 					let adObj={}
 					if(data.data.ad){
+						data.data.ad.map(item=>{
+							item.image=item.img
+						})
 						that.adArr=data.data.ad
-						console.log(that.adArr)
+						
 					}
 					let oldToken=getToken('today')
 					let today=todayNum(),curTime=Date.parse(new Date())
@@ -351,8 +358,15 @@
 		}
 	}
 </script>
-
+<style>
+	
+	.adArr-box .u-swiper-wrap,.adArr-box .u-list-image-wrap {
+		border-radius: 0!important;
+	}
+</style>
 <style scoped lang="scss">
+	
+	
 	.kf{
 		position: fixed;
 		z-index: 2;

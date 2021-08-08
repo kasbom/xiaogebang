@@ -1,5 +1,6 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
+		<kfBtn></kfBtn>
 		<view class="list">
 			<view class="left">
 				<image :src="info&&info.headPic" mode="aspectFill" class="icon"></image>
@@ -109,7 +110,11 @@
 
 <script>
 	import { shareWXChat } from '@/utils/common.js'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
+		components: {
+			kfBtn,
+		},
 		data() {
 			return {
 				info:{

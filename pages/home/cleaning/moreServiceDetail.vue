@@ -1,10 +1,10 @@
 <template>
 	<view class="" style="position: relative;">
+		<kfBtn></kfBtn>
 		<!-- 轮播图 -->
 		<view class="banner-wrap">
-			<u-swiper :list="list" height="320"></u-swiper>
+			<u-swiper :list="list" height="420" img-mode="widthFix"></u-swiper>
 		</view>
-		<kfBtn></kfBtn>
 		<!-- 商品相关 -->
 		<view class="goods-detail">
 			
@@ -78,6 +78,7 @@
 		onLoad(option){
 			this.params.city_id=getToken('city_id')
 			this.params.id=option.id
+			this.params.cate_id=option.cate_id
 			this.getInfo()
 		},
 		methods: {
@@ -109,7 +110,12 @@
 				
 				if (statusCode === 200&&data.error==0 ) {
 					this.infoDetail=data.data
-					this.list=this.infoDetail.content
+					let newArr=[],newObj={}
+					this.infoDetail.content.map(item=>{
+						newObj.image=item
+						newArr.push(newObj)
+					})
+					this.list=newArr
 					this.tagsArr=this.infoDetail.tags
 					this.selectArr=this.infoDetail.cates
 					

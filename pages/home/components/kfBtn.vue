@@ -1,9 +1,18 @@
 <template>
    <movable-area style="width:60rpx;height:100%;position:fixed;z-index:2;right:0 ;">
 		<movable-view :x="x" :y="y" direction="all" >
+			<!-- #ifdef APP-PLUS -->
 			<view class="kf" @click="gotoKF">
 				<image style="width: 100rpx;height: 100rpx;" src="../../../static/images/index/kf.png" mode="aspectFill"></image>
 			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<button open-type="contact" style="border-radius: 0;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+				<view class="kf">
+					<image style="width: 100rpx;height: 100rpx;" src="../../../static/images/index/kf.png" mode="aspectFill"></image>
+				</view>
+			</button>
+			<!-- #endif -->
 		</movable-view>
 	</movable-area>
 	

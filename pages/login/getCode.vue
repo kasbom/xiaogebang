@@ -4,7 +4,7 @@
 			<view class="title-text">登录/注册</view>
 			<view class="title-tip">hi，欢迎来到小哥帮</view>
 		</view>
-		
+		<!-- #ifdef APP-PLUS -->
 		<view class="form-wrap">
 			<u-form :model="form" ref="uForm">
 				<u-form-item label="手机号" prop="mobile" label-width="120">
@@ -12,9 +12,15 @@
 				</u-form-item>
 			</u-form>
 		</view>
+		<!-- #endif -->
 		
 		<view class="btn-wrap">
+			<!-- #ifdef APP-PLUS -->
 			<m-button title="获取验证码" :css="{'border-radius': '40px'}" :style="{'background':isPhone?'#ffc576':'#ff6a00' }"  :disabled="isPhone" @handleClick="handleLogin"></m-button>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<button style="border-radius: 40px;background:#ff6a00;color:#FFFFFF" open-type="getPhoneNumber"  @getphonenumber="getPhoneNumberClick">手机号码一键登录</button>
+			<!-- #endif -->
 		</view>
 		
 		<view class="login-foot">
@@ -80,7 +86,8 @@
 				system: false, // 系统版本
 				platform: '', // 平台
 				identityToken: '',
-				agreeFlag:true
+				agreeFlag:true,
+				code:'',
 			}
 		},
 		onLoad(option){
@@ -100,6 +107,14 @@
 				fail: (err) => {},
 				complete: () => {}
 			})
+			// #ifdef MP-WEIXIN
+			uni.login({
+			  provider: 'weixin',
+			  success: async (loginRes) => {
+				  this.code=loginRes.code
+			  }
+			});
+			// #endif
 		},
 		onShow() {
 			removeToken('city_id')
@@ -134,11 +149,10 @@
 			// 登录
 			async handleLogin() {
 				
-				
-				
+
 				const params = JSON.parse(JSON.stringify(this.form))
 				if (!this.$u.test.mobile(params.mobile)) return this.$toast('请输入正确手机号')
-				
+
 				const { statusCode, data } = await this.$u.api.sendLoginCode(params,true,{'content-type': 'application/x-www-form-urlencoded'})
 				if (statusCode === 200&&data.error==0) {
 					this.$toast('发送成功')
@@ -149,6 +163,40 @@
 				} else {
 					this.$toast(data.msg)
 				}
+			},
+			getPhoneNumberClick(e){
+				let params={
+				  data:e.detail.encryptedData,
+				  iv:e.detail.iv,
+				  code:this.code,
+				  type:1,
+			    }
+			    this.loginFunWx(params)
+				// uni.login({
+				//   provider: 'weixin',
+				//   success: async (loginRes) => {
+				// 	  let params={
+				// 		  data:e.detail.encryptedData,
+				// 		  iv:e.detail.iv,
+				// 		  code:loginRes.code,
+				// 		  type:1,
+				// 	  }
+				//     console.log(params);
+				// 	uni.showToast({
+				// 		  title: '这是手机号码登录',
+				// 		  icon: 'none',
+				// 		  mask: true,
+				// 		  duration:3000,
+				// 		  success: () => {
+				// 			  setTimeout(()=>{
+				// 				  this.loginFunWx(params)
+				// 			  },3000)
+				// 		  },
+				// 	  })
+				//     // 获取用户信息
+				//   }
+				// });
+				  
 			},
 			// 微信端获取手机号
 			appLoginWx(){
@@ -190,6 +238,50 @@
 					console.log(data)
 					this.$toast(data.msg)
 				}
+			},
+			async loginFunWx(params){
+				
+				const { statusCode, data, message } =await this.$u.api.wechatPhone(params)
+				if (statusCode === 200&&data.error==0) {
+					this.$toast('登录成功')
+					const token = data.token
+					console.log(token)
+					this.$store.commit('SET_TOKEN', token)
+					uni.setStorageSync('token', token)
+					uni.setStorageSync('inv_id', data.userInfo.userId)
+					this.$store.commit('SET_USER_INFO', data.userInfo)
+					// #ifdef MP-WEIXIN
+						if(data.userInfo.bindMobile==0){
+							uni.showToast({
+							  title: '请绑定手机号',
+							  icon: 'none',
+							  mask: true,
+							  duration:3000,
+							  success: () => {
+							  	setTimeout(()=>{
+									uni.navigateTo({
+										url: '/pages/login/getCode?bindMobile='+data.userInfo.bindMobile
+									})
+								},3000)
+							  }
+							})
+							
+							
+						}else{
+							uni.switchTab({
+								url: '../home/index',
+							})
+						}
+					// #endif
+					// await this.$store.dispatch('getUserInfo', this)
+					
+					// 根据选择身份跳转
+					// const userInfo = this.$store.state.userInfo
+					// switchId(data.userInfo)
+				} else {
+					this.$toast(data.msg)
+				}
+				
 			},
 			async loginFun(params,type){
 				const { statusCode, data, message } =this.system&&type?await this.$u.api.appleLogin(params):await this.$u.api.miniWechat(params)
@@ -378,7 +470,7 @@
 				.c-apple-login-btn {
 					width: calc(100%-100rpx);	
 				}
-				
+				/deep/button::after { border: none }
 			}
 			
 		}

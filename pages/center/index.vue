@@ -1,12 +1,11 @@
 <template>
-	<view>
+	<view style="position: relative;">
 		<u-navbar :is-back="false" title="个人中心" :border-bottom="false">
 			<view class="nav-wrap" @click="toPage('/publicPages/pages/set/index')">
 				<u-icon name="setting" size="40"></u-icon>
 			</view>
 		</u-navbar>
-			
-		
+		<kfBtn></kfBtn>
 		<view class="addr">
 			<view class="addr-left">
 				<image @click="uploadImg" :src="headerImg" class="addr-icon" mode=""></image>
@@ -53,9 +52,13 @@
 </template>
 
 <script>
+	import kfBtn from '../home/components/kfBtn.vue'
 	import config from '@/config'
 	import {getToken} from '@/utils/common.js'
 	export default {
+		components: {
+			kfBtn,
+		},
 		data(){
 			return {
 				token:'',

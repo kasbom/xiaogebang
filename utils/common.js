@@ -78,6 +78,22 @@ function shareWXChat(obj){
 		    		reject(err)
 		    	}
 		    });
+			// uni.share({
+			//     provider: 'weixin',
+			//     scene: "WXSceneSession",
+			//     type: 5,
+			//     imageUrl: obj.imageUrl,
+			//     title: obj.title,
+			//     miniProgram: {
+			//         id: 'gh_b7606bb00e58',
+			//         path: '/pages/home/index',
+			//         type: 0,
+			//         webUrl: 'http://uniapp.dcloud.io'
+			//     },
+			//     success: ret => {
+			//         console.log(JSON.stringify(ret));
+			//     }
+			// });
 		//#endif
 	})
 	

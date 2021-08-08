@@ -33,7 +33,8 @@
 						name: '',
 						type:0,
 						store_id:0,
-					}
+					},
+					userInfoObj:{}
 					
 				}
 			},
@@ -41,9 +42,19 @@
 				this.params.type= option.type
 				this.params.city_id=getToken('city_id')
 				this.params.store_id =uni.getStorageSync('store_id')
-				// this.getInfo()
+				this.getUserInfo()
 			},
 			methods:{
+				async getUserInfo(){
+					const { statusCode, data, message } = await this.$u.api.getUserInfo({})
+					if (statusCode === 200 &&data.error==0) {
+						this.userInfoObj=data.data
+						this.params.mobile=this.userInfoObj.mobile
+						this.params.name=this.userInfoObj.nickname||userInfoObj.user_type_text
+					} else {
+						this.$toast(data.msg)
+					}
+				},
 				async getInfo(){
 					if (!this.$u.test.mobile(this.params.mobile)) return this.$toast('请输入正确手机号')
 					const { statusCode, data, message } =  await this.$u.api.subscribe(this.params,true)

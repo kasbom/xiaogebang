@@ -1,8 +1,8 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
+		<kfBtn></kfBtn>
 		<!-- 轮播图 -->
 		<u-swiper   :list='list' img-mode="widthFix" border-radius="none" height="750"></u-swiper>
-		
 		<!-- 倒计时 -->
 		<TimeDown 
 		  :infoObj="groupDetail"
@@ -51,6 +51,7 @@
 
 <script>
 	import TimeDown from '../components/TimeDown.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	import { shareWXChat } from '@/utils/common.js'
 	export default {
 		data() {
@@ -157,7 +158,9 @@
 			}
 		},
 		components: {
-			TimeDown
+			TimeDown,
+			   kfBtn,
+			
 		}
 	}
 </script>

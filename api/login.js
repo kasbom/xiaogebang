@@ -28,6 +28,11 @@ const API_login = vm => {
 		 * apple登录
 		 */
 		appleLogin: (params = {}, showLoading) => vm.$u.post('/Login/appleLogin', params, showLoading),
+		/**
+		 * wechatPhone登录
+		 */
+		wechatPhone: (params = {}, showLoading) => vm.$u.post('/Login/wechatPhone', params, showLoading),
+		
 		
   }
 }

@@ -1,10 +1,10 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
 		<!-- 轮播图 -->
+		<kfBtn></kfBtn>
 		<view class="banner-wrap">
 			<u-swiper :list="list" img-mode="widthFix" border-radius="none" height="750"></u-swiper>
 		</view>
-		
 		<!-- 倒计时 -->
 		<TimeDown
 		  :infoObj="info"
@@ -59,6 +59,7 @@
 
 <script>
 	import TimeDown from '../components/TimeDown.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	import JoinList from './components/JoinLists.vue'
 	import { shareWXChat,getToken } from '@/utils/common.js'
 	export default {
@@ -92,7 +93,8 @@
 		
 		components: {
 			TimeDown,
-			JoinList
+			JoinList,
+			kfBtn,
 		},
 		onLoad(option){
 			this.params.city_id=option.city_id

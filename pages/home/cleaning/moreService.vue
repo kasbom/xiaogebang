@@ -1,5 +1,6 @@
 <template>
 	<view class="wrap" style="position: relative;min-height: 500px;">
+		<kfBtn></kfBtn>
 		<view class="left">
 			<view v-for="(item,index) in navList" :key="index" 
 			      class="left-list" :class="currentNum==index?'active':''"
@@ -26,7 +27,6 @@
 				</view>
 			</scroll-view>
 		</view>
-		<kfBtn></kfBtn>
 	</view>
 </template>
 
@@ -60,7 +60,7 @@
 			},
 			toDetail(id) {
 				uni.navigateTo({
-					url: '/pages/home/cleaning/moreServiceDetail?id='+id
+					url: '/pages/home/cleaning/moreServiceDetail?id='+id+'&cate_id='+this.params.cate_id
 				})
 			},
 			async getInfo(){

@@ -1,7 +1,7 @@
 <template>
-	<view class="wrap">
+	<view class="wrap" style="position: relative;">
+		<kfBtn></kfBtn>
 		<image @click="navToPage(item)"  v-for="item,i in urlArr" :key="i" :src="item.img" class="icon" mode=""></image>
-		
 		<view class="submit">
 			<view class="service" @click="gotoKF">
 				<image src="../../../static/images/index/service.png" class="service-icon" mode=""></image>
@@ -22,6 +22,7 @@
 
 <script>
 	import {navTo,goToPage} from '@/utils/common.js'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
 		data() {
 			return {
@@ -29,7 +30,9 @@
 				params:null,
 			}
 		},
-		
+		components: {
+			kfBtn,
+		},
 		onLoad(option){
 			this.params=JSON.parse(option.params)
 			console.log(this.params)

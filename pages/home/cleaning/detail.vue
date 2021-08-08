@@ -1,10 +1,10 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
+		<kfBtn></kfBtn>
 		<!-- 轮播图 -->
 		<view class="banner-wrap">
 		  <u-swiper :list="list" img-mode="widthFix" border-radius="none" height="580"></u-swiper>
 		</view>
-		
 		<!-- 商品相关 -->
 		<view class="goods-detail">
 			<view class="goods-name h1 fz16">{{info.name}}</view>
@@ -46,6 +46,7 @@
 
 <script>
 	import { shareWXChat } from '@/utils/common.js'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
 		data() {
 			return {
@@ -82,6 +83,9 @@
 		onNavigationBarButtonTap() {
 				let shareData=this.toJoin()
 				return shareData
+		},
+		components: {
+			kfBtn,
 		},
 		methods: {
 			async toJoin(){

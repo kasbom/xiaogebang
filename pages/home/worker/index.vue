@@ -1,5 +1,6 @@
 <template>
-	<view class="">
+	<view class="" style="position: relative;">
+		<kfBtn></kfBtn>
 		<view class="search-box">
 			<view class="search-wrap">
 				<u-search @blur="searchChange" placeholder="请输入阿姨姓名" bg-color="#fff" :show-action="false" v-model="name"></u-search>
@@ -31,6 +32,7 @@
 
 <script>
 	import WorkerLists from './components/WorkerLists.vue'
+	import kfBtn from '../components/kfBtn.vue'
 	export default {
 		data() {
 			return {
@@ -83,7 +85,8 @@
 			},
 		},
 		components: {
-			WorkerLists
+			WorkerLists,
+			kfBtn,
 		},
 		onLoad(option){
 			this.params=JSON.parse(option.params)
