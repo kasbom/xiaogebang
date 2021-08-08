@@ -92,20 +92,20 @@
                     },
                     "weixin" : {
                         "__platform__" : [ "ios", "android" ],
-                        "appid" : "wxa998328e720628f1",
+                        "appid" : "wxe3cf80011d9adf0c",
                         "UniversalLinks" : "https://app.xiaogebang.com/apple-app-site-association/"
                     }
                 },
                 "share" : {
                     "weixin" : {
-                        "appid" : "wxa998328e720628f1",
+                        "appid" : "wxe3cf80011d9adf0c",
                         "UniversalLinks" : "https://app.xiaogebang.com/apple-app-site-association/"
                     }
                 },
                 "oauth" : {
                     "weixin" : {
-                        "appid" : "wxa998328e720628f1",
-                        "appsecret" : "70389806194021fa5773236b95b9d705",
+                        "appid" : "wxe3cf80011d9adf0c",
+                        "appsecret" : "599b51a59730aa131cc322b740a6035c",
                         "UniversalLinks" : "https://app.xiaogebang.com/apple-app-site-association/"
                     },
                     "apple" : {}
