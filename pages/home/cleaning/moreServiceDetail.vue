@@ -3,7 +3,7 @@
 		<kfBtn></kfBtn>
 		<!-- 轮播图 -->
 		<view class="banner-wrap">
-			<u-swiper :list="list" height="420" img-mode="widthFix"></u-swiper>
+			<u-swiper :list="banlist" height="420" img-mode="widthFix"></u-swiper>
 		</view>
 		<!-- 商品相关 -->
 		<view class="goods-detail">
@@ -41,7 +41,9 @@
 		<view class="dom-wrap">
 			<view class="title">
 				<u-section :show-line="false" title="详情" font-size="30" color="#333" :right="false"></u-section>
-				<image  :src="infoDetail.img" class="list-icon"  mode="aspectFill"></image>
+			</view>
+			<view class="img-box">
+			 <image  :src="item" mode="widthFix" v-for="item,index in list" :key="index"></image>
 			</view>
 		</view>
 		
@@ -64,6 +66,7 @@
 				 * 轮播图相关
 				 */
 				list: [],
+				banlist:[],
 				tagsArr:[],
 				selectArr:[],
 				params:{
@@ -110,12 +113,10 @@
 				
 				if (statusCode === 200&&data.error==0 ) {
 					this.infoDetail=data.data
-					let newArr=[],newObj={}
-					this.infoDetail.content.map(item=>{
-						newObj.image=item
-						newArr.push(newObj)
-					})
-					this.list=newArr
+					let newArr=[],newObj={image:this.infoDetail.img}
+					newArr.push(newObj)
+					this.banlist=newArr
+					this.list=this.infoDetail.content
 					this.tagsArr=this.infoDetail.tags
 					this.selectArr=this.infoDetail.cates
 					

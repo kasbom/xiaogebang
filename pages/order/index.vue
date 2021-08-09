@@ -13,28 +13,28 @@
 						<image src="../../static/images/order/a1.png" class="list-img list-img-1" mode=""></image>
 						<view class="list-text">待支付</view>
 					</view>
-					<text class="tips-num">{{numObj.nopay}}</text>
+					<text class="tips-num" v-if="numObj.nopay>0">{{numObj.nopay}}</text>
 				</u-grid-item>
 				<u-grid-item class="classification-list-box">
 					<view class="classification-list"  @click="toServiceOrder(2)">
 						<image src="../../static/images/order/a4.png" class="list-img list-img-1" mode=""></image>
 						<view class="list-text">已支付</view>
 					</view>
-					<text class="tips-num">{{numObj.ispay}}</text>
+					<text class="tips-num" v-if="numObj.ispay>0">{{numObj.ispay}}</text>
 				</u-grid-item>
 				<u-grid-item class="classification-list-box">
 					<view class="classification-list"  @click="toServiceOrder(99)">
 						<image src="../../static/images/order/a2.png" class="list-img list-img-1" mode=""></image>
 						<view class="list-text">待服务</view>
 					</view>
-					<text class="tips-num">{{numObj.d_service}}</text>
+					<text class="tips-num" v-if="numObj.d_service>0">{{numObj.d_service}}</text>
 				</u-grid-item>
 				<u-grid-item class="classification-list-box">
 					<view class="classification-list"  @click="toServiceOrder(3)">
 						<image src="../../static/images/order/a3.png" class="list-img list-img-1" mode=""></image>
 						<view class="list-text">已取消</view>
 					</view>
-					<text class="tips-num">{{numObj.cancel}}</text>
+					<text class="tips-num" v-if="numObj.cancel>0">{{numObj.cancel}}</text>
 				</u-grid-item>
 				
 				<u-grid-item class="classification-list-box">
@@ -42,7 +42,7 @@
 						<image src="../../static/images/order/a5.png" class="list-img list-img-1" mode=""></image>
 						<view class="list-text">已完成</view>
 					</view>
-					<text class="tips-num">{{numObj.finsh}}</text>
+					<text class="tips-num" v-if="numObj.finsh>0">{{numObj.finsh}}</text>
 				</u-grid-item>
 			</u-grid>
 		</view>

@@ -11,8 +11,13 @@
 		
 		<view class="login-foot">
 			<view class="tip-wrap">
-				<view>未注册的手机号验证后将自动创建小哥帮账号登录即代表您</view>
-				<view>已同意<text class="tip-name">《小哥帮隐私政策》</text></view>
+				<u-checkbox-group>
+					<u-checkbox v-model="agreeFlag" name="1" inactive-color="#eeeeee"
+						active-color="#ff5000"  label-size="24rpx">
+						请阅读并同意
+					</u-checkbox>
+				</u-checkbox-group>
+				<view><text class="tip-name" @click="navToFuc(1)">《小哥帮隐私政策》</text></view>
 			</view>
 		</view>
 		
@@ -37,7 +42,8 @@
 				code: '',
 				codeText: '',
 				loginType:'',
-				bindMobile:null
+				bindMobile:null,
+				agreeFlag:false,
 			}
 		},
 		onLoad(option) {
@@ -48,6 +54,7 @@
 		},
 		methods: {
 			codeChange(e){
+				if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				this.form.code=e
 			},
 			// 登录
@@ -91,6 +98,13 @@
 				}
 				
 			},
+			navToFuc(type){
+				if(type==1){
+					navTo('/publicPages/pages/news/webView?url=https://app.xiaogebang.com/index.php/Api/Article/detail/id/81')
+				}else{
+					navTo('')
+				}
+			},
 		}
 	}
 </script>
@@ -126,8 +140,11 @@
 			text-align: center;
 			line-height: 19px;
 			padding-bottom: 55px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			.tip-name{
-				color: #000;
+				color:rgb(255, 197, 118);
 			}
 		}
 	}

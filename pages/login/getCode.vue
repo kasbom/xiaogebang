@@ -48,7 +48,7 @@
 			</view>
 			<view class="tip-wrap">
 				
-				<u-checkbox-group @change="agreeChange($event)">
+				<u-checkbox-group>
 					<u-checkbox v-model="agreeFlag" name="1" inactive-color="#eeeeee"
 						active-color="#ff5000"  label-size="24rpx">
 						请阅读并同意
@@ -86,7 +86,7 @@
 				system: false, // 系统版本
 				platform: '', // 平台
 				identityToken: '',
-				agreeFlag:true,
+				agreeFlag:false,
 				code:'',
 			}
 		},
@@ -149,7 +149,7 @@
 			// 登录
 			async handleLogin() {
 				
-
+                if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				const params = JSON.parse(JSON.stringify(this.form))
 				if (!this.$u.test.mobile(params.mobile)) return this.$toast('请输入正确手机号')
 
@@ -165,6 +165,7 @@
 				}
 			},
 			getPhoneNumberClick(e){
+				if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				let params={
 				  data:e.detail.encryptedData,
 				  iv:e.detail.iv,
@@ -200,6 +201,7 @@
 			},
 			// 微信端获取手机号
 			appLoginWx(){
+				if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				console.log('微信点击了')
 				Utils.appLoginWxCommon().then(res=>{
 					console.log('微信获取了'+res)
@@ -210,6 +212,7 @@
 			},
 			
 			login() {
+				if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				Utils.loginCommon().then(res=>{
 					let data={code: res,type:1}
 					this.appLoginFun(data)
@@ -363,6 +366,7 @@
 			// 苹果授权登录
 			appleAuth() {
 				let that=this
+			    if (!that.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				uni.login({
 					provider: 'apple',
 					success: loginRes => {
@@ -385,13 +389,7 @@
 					}
 				})
 			},
-			agreeChange(val){
-				if (this.$u.test.mobile(this.form.mobile)&&this.agreeFlag){
-					this.isPhone=false
-				}else{
-					this.isPhone=true
-				}
-			}
+			
 		}
 	}
 </script>

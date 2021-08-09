@@ -34,6 +34,24 @@ export const shareMixins = {
 			}
         }
     },
+	onShareTimeline() {//分享到朋友圈
+        return {
+            title: this.shareData.title,
+            imageUrl: this.shareData.imageUrl,
+            success(res){
+				uni.showToast({
+					title:'分享成功'
+				})
+			},
+			fail(res){
+				console.log(res)
+				uni.showToast({
+					title:'分享失败',
+					icon:'none'
+				})
+			}
+        }
+    },
     //#endif
 
     onLoad(option) {
