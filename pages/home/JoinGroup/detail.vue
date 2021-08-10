@@ -61,7 +61,7 @@
 	import TimeDown from '../components/TimeDown.vue'
 	import kfBtn from '../components/kfBtn.vue'
 	import JoinList from './components/JoinLists.vue'
-	import { shareWXChat,getToken } from '@/utils/common.js'
+	import { shareWXChat,getToken,getQueryVariable } from '@/utils/common.js'
 	export default {
 		data() {
 			return {
@@ -172,8 +172,16 @@
 				this.params.time=e[1].value
 			},
 			goPage(id){
+				let url=`/pages/home/cleaning/detail?id=${id}&city_id=${this.params.city_id}`
+				let newObj= getQueryVariable(url)
+				let newId=newObj["id"]
+				let cityid= newObj["city_id"]
+				if(newId==''||cityid==''||!newId||!cityid){
+					this.$toast('未选择城市，请重新选择!')
+					return 
+				}
 				 uni.navigateTo({
-				 	url: `/pages/home/cleaning/detail?id=${id}&city_id=${this.params.city_id}`
+				 	url:url
 				 })
 			},
 			gotoKF(){

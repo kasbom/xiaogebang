@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import {navTo,getToken} from '@/utils/common.js'
+	import {navTo,getToken,getQueryVariable} from '@/utils/common.js'
 	export default {
 		data() {
 			return {
@@ -46,6 +46,13 @@
 		},
 		methods:{
 			navToPage(url){
+				let newObj= getQueryVariable(url)
+				let id=newObj["id"]
+				let cityid= newObj["city_id"]
+				if(id==''||cityid==''||!id||!cityid){
+					this.$toast('未选择城市，请重新选择!')
+					return 
+				}
 				navTo(url)
 			}
 		}

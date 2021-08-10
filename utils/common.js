@@ -7,6 +7,7 @@
   return n
 }
 const navTo=(url)=>{
+	
 	uni.navigateTo({
 		url: url,
 		fail:(err)=> {
@@ -78,6 +79,7 @@ function shareWXChat(obj){
 		    // 		reject(err)
 		    // 	}
 		    // });
+			let inv_id=localStorage.getItem('inv_id')
 			uni.share({
 			    provider: 'weixin',
 			    scene: "WXSceneSession",
@@ -86,7 +88,7 @@ function shareWXChat(obj){
 			    title: obj.title,
 			    miniProgram: {
 			        id: 'gh_b7606bb00e58',
-			        path: '/pages/home/index',
+			        path: '/pages/home/index?inv_id'+inv_id,
 			        type: 0,
 			        webUrl: 'http://uniapp.dcloud.io'
 			    },
@@ -99,18 +101,23 @@ function shareWXChat(obj){
 	
 }
 function goToPage(item,city_id){
+	    let url=''
 		if(item.likeType==1){
-			navTo(`/pages/home/cleaning/detail?id=${item.linkId}&city_id=${city_id}`)
+			url=`/pages/home/cleaning/detail?id=${item.linkId}&city_id=${city_id}`
 		}else if(item.likeType==2){
-			navTo(`/pages/home/SetMeal/detail?id=${item.linkId}&city_id=${city_id}`)
+			url=`/pages/home/SetMeal/detail?id=${item.linkId}&city_id=${city_id}`
 		}else if(item.likeType==3){
-			navTo(`/pages/home/Spike/detail?id=${item.linkId}&city_id=${city_id}`)
+			url=`/pages/home/Spike/detail?id=${item.linkId}&city_id=${city_id}`
 		}else if(item.likeType==4){
-			navTo(`/pages/home/JoinGroup/detail?id=${item.linkId}&city_id=${city_id}`)
-		}else if(item.likeType==5){
-			navTo(``)
+			url=`/pages/home/JoinGroup/detail?id=${item.linkId}&city_id=${city_id}`
 		}
-		
+		let newObj= getQueryVariable(url)
+		let id=newObj["id"]
+		let cityid= newObj["city_id"]
+		if(id==''||cityid==''||!id||!cityid){
+			return 
+		}
+		navTo(url)
 }
 function bMapTransQQMap(lat, lng) {
            var X_PI = Math.PI * 3000.0 / 180.0;
@@ -142,7 +149,7 @@ function toMapAPP(latitude,longitude,name){
 					url = `baidumap://map/marker?location=${latitude},${longitude}&title=${name}&coord_type=gcj02&src=andr.baidu.openAPIdemo`;
 					break;
 				case 3:
-					url = `androidamap://viewMap?sourceApplication=appname&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=0`;
+					url = `androidamap://viewMap?sourceApplication=appname&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=1`;
 					break;
 				default:
 					break;
@@ -172,7 +179,7 @@ function toMapAPP(latitude,longitude,name){
 					url = `baidumap://map/marker?location=${latitude},${longitude}&title=${name}&content=${name}&src=ios.baidu.openAPIdemo&coord_type=gcj02`;
 					break;
 				case 3:
-					url = `iosamap://viewMap?sourceApplication=applicationName&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=0`;
+					url = `iosamap://viewMap?sourceApplication=applicationName&poiname=${name}&lat=${obj.lat}&lon=${obj.lng}&dev=1`;
 					break;
 				default:
 					break;
@@ -212,7 +219,20 @@ function time_range (beginTime, endTime) {
     return false;
   }
 }
-
+function getQueryVariable(url,variable){
+		  let urlArr=url.split('?')
+		  var url ='?'+urlArr[1]
+         var theRequest = new Object();
+         if (url.indexOf("?") != -1) {
+             var str = url.substr(1);
+             strs = str.split("&");
+             for ( var i = 0; i < strs.length; i++) {
+                 theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+             }
+         }
+         return theRequest;
+  
+}
 module.exports = {
 	navTo,
 	randomString,
@@ -224,4 +244,5 @@ module.exports = {
 	goToPage,
 	toMapAPP,
 	time_range,
+	getQueryVariable,
 } 

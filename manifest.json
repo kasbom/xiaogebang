@@ -75,7 +75,19 @@
             },
             /* ios打包配置 */
             "ios" : {
-                "idfa" : false
+                "idfa" : false,
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "NSPhotoLibraryUsageDescription",
+                    "NSPhotoLibraryAddUsageDescription" : "NSPhotoLibraryAddUsageDescription",
+                    "NSCameraUsageDescription" : "NSCameraUsageDescription",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "NSLocationAlwaysAndWhenInUseUsageDescription",
+                    "NSLocationAlwaysUsageDescription" : "NSLocationAlwaysUsageDescription",
+                    "NSRemindersUsageDescription" : "NSRemindersUsageDescription",
+                    "NSContactsUsageDescription" : "NSContactsUsageDescription",
+                    "NSLocationWhenInUseUsageDescription" : "NSLocationWhenInUseUsageDescription",
+                    "NSMicrophoneUsageDescription" : "NSMicrophoneUsageDescription",
+                    "NSCalendarsUsageDescription" : "NSCalendarsUsageDescription"
+                }
             },
             /* SDK配置 */
             "sdkConfigs" : {

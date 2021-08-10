@@ -121,7 +121,10 @@
 				showUp:false,
 			}
 		},
-		onLoad(){
+		onLoad(option){
+			if(option.inv_id){
+				setToken('option.inv_id',option.inv_id) 
+			}
 			this.amapPlugin = new amap.AMapWX({
 				key: this.key  
 			});

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-	import {navTo,getToken} from '@/utils/common.js'
+	import {navTo,getToken,getQueryVariable} from '@/utils/common.js'
 	export default {
 		data() {
 			return {
@@ -47,6 +47,13 @@
 					url=`/pages/home/cleaning/detail?id=${obj.linkId}&city_id=${this.city_id}`
 				}else if(obj.linkType==2){
 					url=`/pages/home/SetMeal/detail?id=${obj.linkId}&city_id=${this.city_id}`
+				}
+				let newObj= getQueryVariable(url)
+				let id=newObj["id"]
+				let cityid= newObj["city_id"]
+				if(id==''||cityid==''||!id||!cityid){
+					this.$toast('未选择城市，请重新选择!')
+					return 
 				}
 				navTo(url)
 			}

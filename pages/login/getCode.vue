@@ -91,12 +91,13 @@
 			}
 		},
 		onLoad(option){
+			let inv_id= getToken('inv_id')
+			if(inv_id&&inv_id!==null&&inv_id!='')this.inv_id=inv_id
+			if(option.inv_id)this.inv_id=option.inv_id
 			if(option.bindMobile){
 				this.bindMobile=option.bindMobile
 				this.form.sendType=4
 			}
-			
-			if(option.inv_id)this.inv_id=option.inv_id
 			uni.getProvider({
 				service:"oauth",
 				success: (res) => {
@@ -152,7 +153,7 @@
                 if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				const params = JSON.parse(JSON.stringify(this.form))
 				if (!this.$u.test.mobile(params.mobile)) return this.$toast('请输入正确手机号')
-
+                if(this.inv_id!=null)params.inv_id=this.inv_id
 				const { statusCode, data } = await this.$u.api.sendLoginCode(params,true,{'content-type': 'application/x-www-form-urlencoded'})
 				if (statusCode === 200&&data.error==0) {
 					this.$toast('发送成功')
@@ -172,6 +173,7 @@
 				  code:this.code,
 				  type:1,
 			    }
+				if(this.inv_id!=null)params.inv_id=this.inv_id
 			    this.loginFunWx(params)
 				// uni.login({
 				//   provider: 'weixin',

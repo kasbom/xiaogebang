@@ -58,6 +58,7 @@
 				})
 			},
 			async loginOut(){
+				uni.removeStorageSync('inv_id')
 				const { statusCode, data, message } = await this.$u.api.getUserInfo({})
 				if (statusCode === 200 &&data.error==0) {
 					uni.reLaunch({

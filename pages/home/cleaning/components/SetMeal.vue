@@ -55,7 +55,12 @@
 		}
 		.item{
 			width: 500rpx;
+	        /* #ifdef APP-PLUS */
 			height: 240rpx;
+			/* #endif */
+			/* #ifdef MP-WEIXIN */
+			height: 280rpx;
+			/* #endif */
 			border-radius: 10rpx;
 			overflow: hidden;
 			position: relative;
