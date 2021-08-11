@@ -21,7 +21,7 @@
             "template" : {
                 "title" : "服务协议和隐私政策",
                 "message" : "　　请你务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于：为了更好的向你提供服务，我们需要收集你的设备标识、操作日志等信息用于分析、优化应用性能。<br/>　　你可阅读<a href='https://app.xiaogebang.com/index.php/Api/Article/detail/id/82'>《服务协议》</a>和<a href='https://app.xiaogebang.com/index.php/Api/Article/detail/id/81'>《隐私政策》</a>了解详细信息。如果你同意，请点击下面按钮开始接受我们的服务。",
-                "buttonAccept" : "我知道了",
+                "buttonAccept" : "同意并继续",
                 "buttonRefuse" : "暂不同意",
                 "second" : {
                     "title" : "温馨提示",
@@ -77,16 +77,16 @@
             "ios" : {
                 "idfa" : false,
                 "privacyDescription" : {
-                    "NSPhotoLibraryUsageDescription" : "NSPhotoLibraryUsageDescription",
-                    "NSPhotoLibraryAddUsageDescription" : "NSPhotoLibraryAddUsageDescription",
-                    "NSCameraUsageDescription" : "NSCameraUsageDescription",
-                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "NSLocationAlwaysAndWhenInUseUsageDescription",
-                    "NSLocationAlwaysUsageDescription" : "NSLocationAlwaysUsageDescription",
-                    "NSRemindersUsageDescription" : "NSRemindersUsageDescription",
-                    "NSContactsUsageDescription" : "NSContactsUsageDescription",
-                    "NSLocationWhenInUseUsageDescription" : "NSLocationWhenInUseUsageDescription",
-                    "NSMicrophoneUsageDescription" : "NSMicrophoneUsageDescription",
-                    "NSCalendarsUsageDescription" : "NSCalendarsUsageDescription"
+                    "NSLocationWhenInUseUsageDescription" : "该应用需要你的地理位置，以便为你提供当前位置周边的维修店",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "该应用需要持续获取用户地理位置，以便为你进行导航",
+                    "NSPhotoLibraryUsageDescription" : "该应用需要读取你的相册，以便为你上传照片",
+                    "NSPhotoLibraryAddUsageDescription" : "",
+                    "NSCameraUsageDescription" : "该应用需要读取你的相册，以便为你上传照片",
+                    "NSMicrophoneUsageDescription" : "该应用需要使用你的麦克风，以便订单语音播放",
+                    "NSContactsUsageDescription" : "该应用需要读取你的通讯录，以便骑手与买家联系",
+                    "NSLocationAlwaysUsageDescription" : "该应用需要你的地理位置，以便为你提供当前位置信息",
+                    "NSCalendarsUsageDescription" : "该应用需要获取你的日历，以便更好的体验",
+                    "NSRemindersUsageDescription" : "为了更好的体验，后面请同意授权选项"
                 }
             },
             /* SDK配置 */

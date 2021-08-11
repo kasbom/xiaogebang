@@ -19,7 +19,17 @@
 			</view>
 			<view class="btn-wrap">
 				<m-button title="去支付" v-if="item.order_status==1" size="mini" hollow @handleClick="toPay(item)" :css="{'margin-left': '10px'}"></m-button>
+				<!-- #ifndef MP-WEIXIN -->
 				<m-button title="联系服务" size="mini" v-if="item.order_status==2" hollow :css="{'margin-left': '10px'}" @handleClick="gotoKF"></m-button>
+				<!-- #endif -->
+				
+				<!-- #ifdef MP-WEIXIN -->
+				<view style="margin-right: 10px;">
+					<button open-type="contact" class="contact-btn">
+						<m-button title="联系服务" size="mini" hollow :css="{'margin-left': '10px'}" ></m-button>
+					</button>
+				</view>
+				<!-- #endif -->
 				<m-button title="订单详情" size="mini" gray hollow :css="{'margin-left': '10px'}" @handleClick="toDetail(item)"></m-button>
 				<m-button title="取消" size="mini" v-if="item.order_status==1" gray hollow :css="{'margin-left': '10px'}" @handleClick="cancelOrder(item.id)"></m-button>
 			</view>
@@ -102,6 +112,14 @@
 </script>
 
 <style scoped lang="scss">
+	.contact-btn{
+		background-color: rgba(0,0,0,0);
+		padding: 0;
+		width: 72px;
+		&::after{
+			border: 0;
+		}
+	}
 	.order-list{
 		padding: 15px;
 		background-color: #fff;
