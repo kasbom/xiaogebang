@@ -30,6 +30,9 @@
 			kfBtn,
 		},
 		onLoad(option){
+			if(option.inv_id){
+				setToken('option.inv_id',option.inv_id) 
+			}
 			this.params.city_id=option.id
 			this.getInfo()
 		},

@@ -64,7 +64,7 @@
 			<view class="money-list-wrap">
 				<view class="money-list">
 					<view class="money-list-label fz13 h3">商品总额</view>
-					<view class="money-list-value fz13 h1">￥{{orderDetail.goods_price}}</view>
+					<view class="money-list-value fz13 h1">￥{{orderDetail.total_amount}}</view>
 				</view>
 				<view class="money-list">
 					<view class="money-list-label fz13 h3">优惠</view>
@@ -73,7 +73,7 @@
 				
 				<view class="heji-money">
 					<view class="fz14 h1">实付款</view>
-					<view class="fz15 h99">￥{{orderDetail.total_amount}}</view>
+					<view class="fz15 h99">￥{{orderDetail.order_amount}}</view>
 				</view>
 			</view>
 		</view>

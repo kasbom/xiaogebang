@@ -34,8 +34,8 @@
 			</view>
 			<!-- <view class="tip tip-1">平团成功</view> -->
 			
-			<view class="image-wrap" v-if="usersArr.length>0"  v-for="item,index in usersArr" :key="index">
-				<image :src="item.head_pic" mode="aspectFill" class="image"></image>
+			<view class="image-wrap">
+				<image :src="item.head_pic" mode="aspectFill" class="image"  v-if="usersArr.length>0"  v-for="item,index in usersArr" :key="index"></image>
 			</view>
 			
 			<view class="btn-wrap">
@@ -170,6 +170,12 @@
 		.tip{
 			padding: 20px 0;
 		}
+		.price {
+			text-align: left;
+		}
+		.status {
+			width: 80px;
+		}
 		.tip-1{
 			color: #57be6a;
 		}
@@ -225,6 +231,7 @@
 			flex: 1;
 			display: flex;
 			justify-content: space-between;
+			text-align: left;
 		}
 	}
 </style>

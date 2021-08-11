@@ -59,7 +59,7 @@
 			},
 			async loginOut(){
 				uni.removeStorageSync('inv_id')
-				const { statusCode, data, message } = await this.$u.api.getUserInfo({})
+				const { statusCode, data, message } = await this.$u.api.loginOut({})
 				if (statusCode === 200 &&data.error==0) {
 					uni.reLaunch({
 						url:'/pages/login/getCode'

@@ -62,12 +62,12 @@ export const shareMixins = {
 			    let that = this;
 				let pages = getCurrentPages();
 				let route = pages[pages.length - 1].$page.fullPath;
-				console.log(route)
+				console.log(decodeURIComponent(route))
 				const { statusCode, data, message } = await this.$u.api.wxShare({},true)
 				if (statusCode === 200&&data.error==0 ) {
 					let dataReq=data.data
 					let obj={
-							path:route,
+							path:decodeURIComponent(route),
 							title: dataReq.title,
 							imageUrl:dataReq.img,
 							content:dataReq.content,

@@ -13,7 +13,7 @@
 						<view v-if="isBus!='1'" class="status theme-c fz12">{{orderType==2?item.status_text:item.status_text}}</view>
 						<view v-else class="status theme-c fz12">{{item.mobile}}</view>
 					</view>
-					<view v-if="isBus!='1'" class="price fz18 h99">￥{{orderType==2?item.price:item.goods_price}}</view>
+					<view v-if="isBus!='1'" class="price fz18 h99">￥{{orderType==2?item.price:item.order_amount}}</view>
 					<view v-else class="">{{item.adress}}</view>
 				</view>
 			</view>

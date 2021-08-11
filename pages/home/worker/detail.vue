@@ -132,6 +132,9 @@
 		},
 		
 		onLoad(option){
+			if(option.inv_id){
+				setToken('option.inv_id',option.inv_id) 
+			}
 			this.params.type=option.type
 			this.params.user_id=option.user_id
 			this.getInfo()
