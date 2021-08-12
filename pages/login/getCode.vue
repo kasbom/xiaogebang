@@ -27,7 +27,7 @@
 		</view>
 
 		<view class="login-foot">
-			<view class="wx-login">
+			<view class="wx-login" v-if="bindMobile==null">
 				<view class="wx-login-text">其它登录方式</view>
 				<view class="wx-btn-v">
 					<view class="wx-btn-box">
@@ -179,8 +179,7 @@
 				if (statusCode === 200 && data.error == 0) {
 					this.$toast('发送成功')
 					uni.navigateTo({
-						url: '/pages/login/submitCode?phoneNum=' + params.mobile + '&str=' + data.randStr +
-							'&bindMobile=' + this.bindMobile
+						url: '/pages/login/submitCode?phoneNum=' + params.mobile + '&str=' + data.randStr
 					})
 					return
 				} else {
@@ -197,31 +196,6 @@
 				}
 				if (this.inv_id != null) params.inv_id = this.inv_id
 				this.loginFunWx(params)
-				// uni.login({
-				//   provider: 'weixin',
-				//   success: async (loginRes) => {
-				// 	  let params={
-				// 		  data:e.detail.encryptedData,
-				// 		  iv:e.detail.iv,
-				// 		  code:loginRes.code,
-				// 		  type:1,
-				// 	  }
-				//     console.log(params);
-				// 	uni.showToast({
-				// 		  title: '这是手机号码登录',
-				// 		  icon: 'none',
-				// 		  mask: true,
-				// 		  duration:3000,
-				// 		  success: () => {
-				// 			  setTimeout(()=>{
-				// 				  this.loginFunWx(params)
-				// 			  },3000)
-				// 		  },
-				// 	  })
-				//     // 获取用户信息
-				//   }
-				// });
-
 			},
 			// 微信端获取手机号
 			appLoginWx() {
@@ -290,6 +264,7 @@
 					this.$store.commit('SET_USER_INFO', data.userInfo)
 					// #ifdef MP-WEIXIN
 					if (data.userInfo.bindMobile == 0) {
+						this.inv_id=null
 						uni.showToast({
 							title: '请绑定手机号',
 							icon: 'none',
@@ -298,8 +273,8 @@
 							success: () => {
 								setTimeout(() => {
 									uni.navigateTo({
-										url: '/pages/login/getCode?bindMobile=' + data
-											.userInfo.bindMobile
+										url: '/pages/login/getCode?bindMobile=' + data.userInfo.bindMobile
+
 									})
 								}, 3000)
 							}
@@ -336,6 +311,7 @@
 					uni.setStorageSync('token', token)
 					uni.setStorageSync('inv_id', data.userInfo.userId)
 					this.$store.commit('SET_USER_INFO', data.userInfo)
+					this.bindMobile=data.userInfo.bindMobile
 					// #ifdef MP-WEIXIN
 					if (data.userInfo.bindMobile == 0) {
 						uni.showToast({
@@ -344,6 +320,7 @@
 							mask: true,
 							duration: 3000,
 						})
+						this.inv_id=null
 						uni.navigateTo({
 							url: '/pages/login/getCode?bindMobile=' + data.userInfo.bindMobile
 						})
@@ -384,6 +361,8 @@
 				if (statusCode === 200 && data.error == 0) {
 					console.log(userInfo.bindMobile && userInfo.bindMobile == 0 && (!type))
 					if (userInfo.bindMobile && userInfo.bindMobile == 0 && (!type)) {
+						this.bindMobile=userInfo.bindMobile
+						this.inv_id=null
 						uni.showToast({
 							title: '请绑定手机号',
 							icon: 'none',
