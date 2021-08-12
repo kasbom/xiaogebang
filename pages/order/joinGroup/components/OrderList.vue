@@ -100,10 +100,10 @@
 				}
 				
 			},
-			onShareAppMessage(event) {
-					let shareData=this.toJoinWx()
-					return shareData
-				},
+			// onShareAppMessage(event) {
+			// 		let shareData=this.toJoinWx()
+			// 		return shareData
+			// 	},
 			      
 		   async wxToShare(){
 				const { statusCode, data, message } = await this.$u.api.wxShare({},true)

@@ -70,7 +70,7 @@
 				if (statusCode === 200&&data.error==0 ) {
 					let dataReq=data.data
 					let obj={
-							path:'/pages/login/getCode?inv_id'+inv_id,
+							path:'/pages/login/getCode?inv_id='+inv_id,
 							title: dataReq.title,
 							imageUrl:dataReq.img,
 							content:dataReq.content,
@@ -83,10 +83,6 @@
 				}
 				
 			},
-			async onShareAppMessage(event) {
-					let shareData = await this.toJoinWx()
-					return shareData
-				},
 			        
 			async toJoin(){
 				const { statusCode, data, message } = await this.$u.api.wxShare({},true)

@@ -96,7 +96,13 @@
 				system: false, // 系统版本
 				platform: '', // 平台
 				identityToken: '',
+				// #ifdef MP-WEIXIN
+				agreeFlag: true,
+				// #endif
+				
+				// #ifndef MP-WEIXIN
 				agreeFlag: false,
+				// #endif
 				code: '',
 			}
 		},

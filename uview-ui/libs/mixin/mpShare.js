@@ -7,7 +7,7 @@ module.exports = {
 			imageUrl: '' // 默认为当前页面的截图
 		}
 	},
-	onShareAppMessage() {
-		return this.$u.mpShare
-	}
+	// onShareAppMessage() {
+	// 	return this.$u.mpShare
+	// }
 }

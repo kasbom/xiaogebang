@@ -8,7 +8,7 @@
 				<swiper class="swiper" next-margin="170rpx">
 					<swiper-item v-for="item,i in serviceListArr" :key="i" @click="navToPageFunc(item)">
 						<view class="item yh-item">
-							<image :src="item.img" mode="widthFix"></image>
+							<image :src="item.img" class="item-img" mode="aspectFill"></image>
 						</view>
 					</swiper-item>
 				</swiper>
@@ -49,8 +49,9 @@
 			padding: 10px 0;
 		}
 		.yh-item{
-			/deep/ uni-image{
+			.item-img{
 				width: 100%;
+				height: 100%;
 			}
 		}
 		.item{
