@@ -76,7 +76,7 @@
 		},
 		onLoad(option){
 			if(option.inv_id){
-				setToken('option.inv_id',option.inv_id) 
+				uni.getStorageSync('inv_id',option.inv_id)  
 			}
 			this.params.city_id=option.city_id
 			this.params.id=option.id

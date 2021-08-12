@@ -35,7 +35,7 @@
 		},
 		onLoad(option){
 			if(option.inv_id){
-				setToken('option.inv_id',option.inv_id) 
+				uni.getStorageSync('inv_id',option.inv_id)  
 			}
 			this.params=JSON.parse(option.params)
 			console.log(this.params)
