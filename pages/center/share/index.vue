@@ -83,8 +83,8 @@
 				}
 				
 			},
-			onShareAppMessage(event) {
-					let shareData=this.toJoinWx()
+			async onShareAppMessage(event) {
+					let shareData = await this.toJoinWx()
 					return shareData
 				},
 			        

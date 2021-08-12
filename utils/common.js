@@ -79,7 +79,9 @@ function shareWXChat(obj){
 		    // 		reject(err)
 		    // 	}
 		    // });
-			let inv_id=localStorage.getItem('inv_id')
+			// let inv_id=localStorage.getItem('inv_id')
+			const inv_id = uni.getStorageSync('inv_id')
+			console.log('share')
 			uni.share({
 			    provider: 'weixin',
 			    scene: "WXSceneSession",
@@ -94,7 +96,10 @@ function shareWXChat(obj){
 			    },
 			    success: ret => {
 			        console.log(JSON.stringify(ret));
-			    }
+			    },
+					fail: e => {
+						console.log(e)
+					}
 			});
 		//#endif
 	})

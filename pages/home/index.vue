@@ -123,7 +123,7 @@
 		},
 		onLoad(option){
 			if(option.inv_id){
-				uni.getStorageSync('inv_id',option.inv_id) 
+				uni.setStorageSync('inv_id',option.inv_id) 
 			}
 			this.amapPlugin = new amap.AMapWX({
 				key: this.key  

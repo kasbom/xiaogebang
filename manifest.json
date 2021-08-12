@@ -36,7 +36,6 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Payment" : {},
             "OAuth" : {},
             "Push" : {},
             "Share" : {},

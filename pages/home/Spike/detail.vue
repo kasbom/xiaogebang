@@ -100,6 +100,7 @@
 							imageUrl:dataReq.img,
 						}
 					// #endif
+
 					shareWXChat(obj).then(res=>{
 									  console.log(res)
 					})

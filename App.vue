@@ -3,7 +3,11 @@
 	import switchId from '@/utils/switchId'
 	import {setToken} from '@/utils/common'
 	export default {
-		onLaunch: function() {
+		onLaunch: function({ query: { inv_id = '' } = {} }) {
+			if (inv_id) {
+				uni.setStorageSync('inv_id', inv_id)
+			}
+			
 			let _self=this
 			// 获取token
 			let token = ''
