@@ -2,8 +2,8 @@
     "name" : "小哥帮",
     "appid" : "__UNI__6122C3A",
     "description" : "",
-    "versionName" : "0.0.102",
-    "versionCode" : 102,
+    "versionName" : "0.0.105",
+    "versionCode" : 105,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -21,7 +21,7 @@
             "template" : {
                 "title" : "服务协议和隐私政策",
                 "message" : "　　请你务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于：为了更好的向你提供服务，我们需要收集你的设备标识、操作日志等信息用于分析、优化应用性能。<br/>　　你可阅读<a href='https://app.xiaogebang.com/index.php/Api/Article/detail/id/82'>《服务协议》</a>和<a href='https://app.xiaogebang.com/index.php/Api/Article/detail/id/81'>《隐私政策》</a>了解详细信息。如果你同意，请点击下面按钮开始接受我们的服务。",
-                "buttonAccept" : "同意并继续",
+                "buttonAccept" : "同意",
                 "buttonRefuse" : "暂不同意",
                 "second" : {
                     "title" : "温馨提示",

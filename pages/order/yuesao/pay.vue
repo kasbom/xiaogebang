@@ -129,6 +129,10 @@
 					 let paymentData = data.data
 					 // #ifdef APP-PLUS
 					   console.log(paymentData)
+						 // paymentData.package = 'Sign=MD5'
+						 // paymentData.timestamp = +paymentData.timestamp
+						 // paymentData.sign = 'MD5‘'
+						 console.log(paymentData)
 						uni.requestPayment({
 							provider: payTypeStr,//wxpay微信 alipay支付宝
 							orderInfo:paymentData,  

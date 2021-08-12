@@ -414,7 +414,7 @@
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "小哥帮",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#333"
 	},

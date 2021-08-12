@@ -9,7 +9,7 @@
 			<u-message-input mode="bottomLine" :focus="true" :value="form.code" :maxlength="6" :breathe="true" @change="codeChange" @finish="handleLogin"></u-message-input>
 		</view>
 		
-		<view class="login-foot">
+	<!-- 	<view class="login-foot">
 			<view class="tip-wrap">
 				<u-checkbox-group>
 					<u-checkbox v-model="agreeFlag" name="1" inactive-color="#eeeeee"
@@ -19,7 +19,7 @@
 				</u-checkbox-group>
 				<view><text class="tip-name" @click="navToFuc(1)">《小哥帮隐私政策》</text></view>
 			</view>
-		</view>
+		</view> -->
 		
 		<!-- 获取验证码 -->
 		<!-- <u-verification-code ref="uCode" @change="codeChange"></u-verification-code> -->
@@ -54,7 +54,7 @@
 		},
 		methods: {
 			codeChange(e){
-				if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
+				// if (!this.agreeFlag) return this.$toast('请阅读并同意小哥帮隐私政策')
 				this.form.code=e
 			},
 			// 登录

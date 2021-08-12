@@ -1,2 +1,4 @@
-别名 qijiangbangshou
-密码 qijiangbangshou2021
+
+包名 com.pkg.xgb
+别名 xiaogebang
+密码 920808
