@@ -2,8 +2,8 @@
     "name" : "小哥帮",
     "appid" : "__UNI__6122C3A",
     "description" : "",
-    "versionName" : "0.0.105",
-    "versionCode" : 105,
+    "versionName" : "0.0.106",
+    "versionCode" : 106,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -78,9 +78,9 @@
                 "privacyDescription" : {
                     "NSLocationWhenInUseUsageDescription" : "该应用需要你的地理位置，以便为你提供当前位置周边的维修店",
                     "NSLocationAlwaysAndWhenInUseUsageDescription" : "该应用需要持续获取用户地理位置，以便为你进行导航",
-                    "NSPhotoLibraryUsageDescription" : "该应用需要读取你的相册，以便为你上传照片",
+                    "NSPhotoLibraryUsageDescription" : "该应用上传头像和评论需要上传图片使用您的相机和相册，以便为您上传图片",
                     "NSPhotoLibraryAddUsageDescription" : "",
-                    "NSCameraUsageDescription" : "该应用需要读取你的相册，以便为你上传照片",
+                    "NSCameraUsageDescription" : "该应用上传头像和评论需要上传图片使用您的相机和相册，以便为您上传图片",
                     "NSMicrophoneUsageDescription" : "该应用需要使用你的麦克风，以便订单语音播放",
                     "NSContactsUsageDescription" : "该应用需要读取你的通讯录，以便骑手与买家联系",
                     "NSLocationAlwaysUsageDescription" : "该应用需要你的地理位置，以便为你提供当前位置信息",
